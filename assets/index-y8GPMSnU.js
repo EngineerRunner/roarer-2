@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-hmiX-T3D.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-s4o8IJne.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -14001,7 +14001,7 @@ let __tla = (async () => {
   const _hoisted_11$4 = {
     key: 0
   };
-  const _hoisted_12$3 = {
+  const _hoisted_12$4 = {
     key: 1,
     class: "inline-flex flex-col"
   };
@@ -14174,7 +14174,7 @@ let __tla = (async () => {
               ])
             ], 32)
           ])
-        ], 64)) : (openBlock(), createElementBlock("div", _hoisted_12$3, [
+        ], 64)) : (openBlock(), createElementBlock("div", _hoisted_12$4, [
           createBaseVNode("button", {
             class: "inline-block rounded-xl bg-slate-800 px-2 py-1 text-sm",
             onClick: signOut
@@ -74851,7 +74851,7 @@ let __tla = (async () => {
   const _hoisted_11$3 = [
     "title"
   ];
-  const _hoisted_12$2 = {
+  const _hoisted_12$3 = {
     class: "sr-only"
   };
   const _hoisted_13$2 = {
@@ -75241,7 +75241,7 @@ let __tla = (async () => {
                 createVNode(unref(IconBuildingBridge), {
                   class: "inline-block w-5"
                 }),
-                createBaseVNode("span", _hoisted_12$2, toDisplayString$1(unref(t)("revoltBridgePost")), 1)
+                createBaseVNode("span", _hoisted_12$3, toDisplayString$1(unref(t)("revoltBridgePost")), 1)
               ], 8, _hoisted_11$3)) : createCommentVNode("", true),
               !editing.value && !_ctx.inbox ? (openBlock(), createElementBlock("div", _hoisted_13$2, [
                 _ctx.post.u === unref(loginStatusStore).username ? (openBlock(), createElementBlock(Fragment, {
@@ -75549,7 +75549,7 @@ let __tla = (async () => {
   const _hoisted_11$2 = {
     class: "flex w-full items-center gap-2 rounded-xl bg-slate-800 px-2 py-1"
   };
-  const _hoisted_12$1 = {
+  const _hoisted_12$2 = {
     class: "inline-block text-lg font-bold"
   };
   const _hoisted_13$1 = {
@@ -75724,7 +75724,7 @@ You will lose ownership of the group.`)) {
             (openBlock(true), createElementBlock(Fragment, null, renderList(members.value, (person) => {
               return openBlock(), createElementBlock("div", _hoisted_10$2, [
                 createBaseVNode("div", _hoisted_11$2, [
-                  createBaseVNode("h3", _hoisted_12$1, toDisplayString$1(person), 1),
+                  createBaseVNode("h3", _hoisted_12$2, toDisplayString$1(person), 1),
                   person === owner.value ? (openBlock(), createBlock(unref(IconCrown), {
                     key: 0,
                     class: "inline-block",
@@ -76238,16 +76238,20 @@ You will lose ownership of the group.`)) {
     class: "rounded-xl bg-slate-800 px-2 py-1",
     type: "submit"
   };
-  const _hoisted_8$1 = createBaseVNode("h2", {
+  const _hoisted_8$1 = {
     class: "text-lg font-bold"
-  }, "My account", -1);
+  };
   const _hoisted_9$1 = {
     class: "text-lg font-bold"
   };
   const _hoisted_10$1 = {
-    class: "text-lg font-bold"
+    href: "https://github.com/mybearworld/roarer",
+    class: "text-sky-400 underline"
   };
   const _hoisted_11$1 = {
+    class: "text-lg font-bold"
+  };
+  const _hoisted_12$1 = {
     href: "https://github.com/mybearworld/roarer/graphs/contributors",
     class: "text-sky-400 underline"
   };
@@ -76429,7 +76433,7 @@ You will lose ownership of the group.`)) {
             ]),
             createBaseVNode("button", _hoisted_7$1, toDisplayString$1(unref(t)("updateProfile")), 1)
           ], 32),
-          _hoisted_8$1,
+          createBaseVNode("h2", _hoisted_8$1, toDisplayString$1(unref(t)("myAccount")), 1),
           createBaseVNode("div", null, [
             createBaseVNode("button", {
               class: "rounded-xl bg-slate-800 px-2 py-1",
@@ -76452,10 +76456,15 @@ You will lose ownership of the group.`)) {
           ]),
           createBaseVNode("h2", _hoisted_9$1, toDisplayString$1(unref(t)("language")), 1),
           createVNode(_sfc_main$f),
-          createBaseVNode("h2", _hoisted_10$1, toDisplayString$1(unref(t)("credits")), 1),
+          createBaseVNode("p", null, [
+            createTextVNode(toDisplayString$1(unref(t)("languageContributing.start")), 1),
+            createBaseVNode("a", _hoisted_10$1, toDisplayString$1(unref(t)("languageContributing.githubLink")), 1),
+            createTextVNode(toDisplayString$1(unref(t)("languageContributing.end")), 1)
+          ]),
+          createBaseVNode("h2", _hoisted_11$1, toDisplayString$1(unref(t)("credits")), 1),
           createBaseVNode("p", null, [
             createTextVNode(toDisplayString$1(unref(t)("contributorsThanks.start")), 1),
-            createBaseVNode("a", _hoisted_11$1, toDisplayString$1(unref(t)("contributorsThanks.contributorsLink")), 1),
+            createBaseVNode("a", _hoisted_12$1, toDisplayString$1(unref(t)("contributorsThanks.contributorsLink")), 1),
             createTextVNode(toDisplayString$1(unref(t)("contributorsThanks.end")), 1)
           ]),
           createBaseVNode("p", null, [
@@ -76795,7 +76804,13 @@ You will lose ownership of the group.`)) {
     openDMFail: "Couldn't open DM: {status}",
     chatCreateFail: "Couldn't create chat: {status}",
     chatGetFail: "Couldn't get chats: {status}",
-    disconnected: "You were disconnected. Clicking OK will reload the page."
+    disconnected: "You were disconnected. Clicking OK will reload the page.",
+    myAccount: "My account",
+    languageContributing: {
+      start: "Do you speak one of these languages, or even one that isn't present here yet? If you want to see Roarer in your language, you can ",
+      githubLink: "translate it on GitHub",
+      end: "!"
+    }
   };
   const de = {
     languageName: "Deutsch",
@@ -76905,7 +76920,13 @@ You will lose ownership of the group.`)) {
     openDMFail: "Direktnachricht konnte nicht ge\xF6ffnet werden: {status}",
     chatCreateFail: "Chat konnte nicht erstellt werden {status}",
     chatGetFail: "Chats konnten nicht erhalten werden: {status}",
-    disconnected: "Deine Verbindung wurde abgebrochen. Dr\xFCcke OK, um die Seite neu zu laden."
+    disconnected: "Deine Verbindung wurde abgebrochen. Dr\xFCcke OK, um die Seite neu zu laden.",
+    myAccount: "Mein Konto",
+    languageContributing: {
+      start: "Sprichst du eine dieser Sprachen, oder sogar eine, die hier noch nicht verf\xFCgbar ist? Wenn du Roarer in deiner Sprache sehen willst, kannst du es ",
+      githubLink: "auf GitHub \xFCbersetzen",
+      end: "!"
+    }
   };
   const languages = {
     en,
