@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-PwKogAmZ.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser--Z59p_zn.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -76727,8 +76727,8 @@ You will lose ownership of the group.`)) {
     online: "Online",
     noTypingUsers: "No one is currently typing.",
     discordBridgePost: "This post was created on the Discord server.",
-    webhookBridgePost: "This post was created via a Webhook. These do not go through Meowers account system, anyone can create a message under any name.",
-    splashBridgePost: "This post was created via Splash. These do not go through Meowers or Splashs account system, anyone can create a message under any name.",
+    webhookBridgePost: "This post was created via a Webhook. These do not go through Meower's account system, anyone can create a message under any name.",
+    splashBridgePost: "This post was created via Splash. These do not go through Meower's or Splash's account system, anyone can create a message under any name.",
     revoltBridgePost: "This post was created on the Revolt server.",
     deletePost: "Delete",
     editPost: "Edit",
@@ -76928,9 +76928,126 @@ You will lose ownership of the group.`)) {
       end: "!"
     }
   };
+  const es = {
+    languageName: "Espa\xF1ol",
+    roarer: "Roarer",
+    routeHome: "Home",
+    routeInbox: "Bandeja de entrada",
+    routeGroups: "Grupos",
+    routeUsers: "Usuarios",
+    routeSettings: "Ajustes",
+    signOut: "Cerra sesi\xF3n",
+    developmentStatus: {
+      start: "Nota: Roarer se encuentra actualmente en una etapa muy temprana de su desarrollo. Informe errores y/o sugiera funciones en ",
+      githubRepositoryLink: "el repositorio de GitHub",
+      end: "!"
+    },
+    inDevelopmentMode: "Est\xE1s en modo desarrollo.",
+    loginHeader: "Inicia sesi\xF3n en Roarer",
+    loginUsername: "Nombre de usuario:",
+    loginPassword: "Contrase\xF1a:",
+    loginSubmit: "Iniciar sesi\xF3n",
+    loginSignUp: "Crear cuenta",
+    loginFail: "No se pudo iniciar sesi\xF3n. Esto puede deberse a que tu token ha sido revocado. \xBFQuieres intentarlo de nuevo?",
+    loginSignoutConfirm: "\xBFEst\xE1s seguro de que quieres cerra sesi\xF3n?",
+    loadMore: "Cargar m\xE1s",
+    loadingMore: "Cargando m\xE1s...",
+    onlineUsers: "Usuarios online ({n})",
+    enterPostPlaceholder: "\xA1Di algo!",
+    enterPostSend: "\xA1Enviar!",
+    typingUsers: "Usuarios escribiendo:",
+    online: "Online",
+    noTypingUsers: "Nadie est\xE1 escribiendo.",
+    discordBridgePost: "Este post ha sido creado en el servidor de Discord.",
+    webhookBridgePost: "Esta publicaci\xF3n fue creada a trav\xE9s de un webhook. Estos no pasan por el sistema de cuentas de Meowers, cualquiera puede crear un mensaje con cualquier nombre.",
+    splashBridgePost: "Esta publicaci\xF3n fue creada a trav\xE9s de Splash. Estos no pasan por el sistema de cuentas de Meower o Splash, cualquiera puede crear un mensaje con cualquier nombre.",
+    revoltBridgePost: "Este post fue creado en el servidor de Revolt.",
+    deletePost: "Eliminar",
+    editPost: "Editar",
+    replyPost: "Responder",
+    reportPost: "Reportar",
+    cancelEditingPost: "Cancelar",
+    reloadPostButton: "Recargar",
+    deletePostConfirm: "\xBFEst\xE1s seguro de que quieres eliminar este post?",
+    reportReason: "Raz\xF3n:",
+    confirmReport: "\xBFEst\xE1s completamente seguro? Est\xE1s reportando por la siguiente raz\xF3n:\n{reason}\n\nPost:\n{post}",
+    reportSuccess: "Reportado.",
+    chatDM: "DM",
+    chatSettings: "Ajustes",
+    chatPeople: "Personas",
+    renameChatFail: "No se ha podido renombrar el chat: {status}",
+    addMemberChatFail: "No se ha podido a\xF1adir miembro: {status}",
+    removeMemberChatFail: "No se ha podido remover miembro: {status}",
+    leaveChatFail: "No se ha podido salir del chat: {status}",
+    promoteChatFail: "No se ha podido promover al usuario: {status}",
+    back: "Atr\xE1s",
+    chatRename: "Renombrar",
+    chatAddMember: "A\xF1adir",
+    chatOwner: "Due\xF1o",
+    chatPromote: "Promover",
+    chatRemove: "Remover",
+    profileInformationFail: "No se ha podido obtener informaci\xF3n del perfil: {status}",
+    configFail: "No se ha podido actualizar tu perfil: {errmsg}",
+    configSuccess: "Se ha actualizado tu perfil.",
+    newPassword: "\xBFQu\xE9 quieres que sea tu nueva contrase\xF1a?",
+    oldPassword: "\xBFCu\xE1l es tu contrase\xF1a actual?",
+    passwordChangeFail: "No se ha podido actualizar la contrase\xF1a: {errmsg}",
+    alsoRevokeTokens: "\xBFQuieres tambi\xE9n revocar todos los tokens?",
+    revokeTokensConfirm: "\xBFEst\xE1s seguro? Tendr\xE1s que iniciar sesi\xF3n en cada dispositivo de nuevo.",
+    revokeTokensFail: "No se ha podido revocar los tokens: {errmsg}",
+    deleteAccountConfirm: "\xBFEst\xE1s seguro? No hay absolutamente ninguna manera de deshacer esto. Su cuenta ser\xE1 eliminada PERMANENTEMENTE despu\xE9s de 7 d\xEDas.",
+    deleteAccountPasswordPrompt: "Por favor introduce tu contrase\xF1a para confirmar la eliminaci\xF3n.",
+    deleteAccountFail: "No se ha podido elimiar cuenta: {err}",
+    usersSectionMe: "Yo",
+    usersMeQuote: "Cita:",
+    usersMePfp: "Foto de perfil:",
+    profilePictureAlt: "Foto de perfil n\xBA #{n}",
+    updateProfile: "Actualizar perfil",
+    changePassword: "Cambiar contrase\xF1a",
+    revokeTokens: "Revocar todos los tokens",
+    revokeTokensInfo: "Esto cerrar\xE1 la sesi\xF3n en todos tus dispositivos.",
+    deleteAccount: "Eliminar cuenta",
+    deleteAccountInfo: "Esto eliminar\xE1 tu cuenta PERMANENTEMENTE. NO hay manera de deshacer esto.",
+    language: "Idioma",
+    credits: "Creditos",
+    contributorsThanks: {
+      start: "Gracias a todos los ",
+      contributorsLink: "contribuidores",
+      end: " que han hecho esto posible."
+    },
+    mascotThanks: {
+      start: "\xA1Especiales gracias a ",
+      end: " por crear a la (actualmente sin nombre) mascota!"
+    },
+    blockUserConfirm: "\xBFEst\xE1s seguro de que quieres bloquear a este usuario? No podr\xE1s ver sus mensajes.",
+    unblockUserConfirm: "\xBFEst\xE1s seguro de que quieres desbloquear a este usuario?",
+    blockFailed: "No se ha podido bloquear: {status}",
+    unblockFailed: "No se ha podido desbloquear: {status}",
+    username: "Nombre de usuario",
+    userSearch: "Buscar",
+    noUserPlaceholder: "\xA1Ingrese un usuario arriba para ver su perfil!",
+    lastSeenUser: "Visto por \xFAltima vez en {date}",
+    banned: "Baneado",
+    accountCreated: "Cuenta creada en: {date}",
+    block: "Bloquear",
+    unblock: "Desbloquear",
+    createChat: "Crear",
+    chatNickname: "Nombre",
+    openDMFail: "No se ha podido abrir DM: {status}",
+    chatCreateFail: "No se ha podido crear chat: {status}",
+    chatGetFail: "No se han podido cargar los chats: {status}",
+    disconnected: "Has sido desconectado. Al hacer clic en Aceptar se recargar\xE1 la p\xE1gina.",
+    myAccount: "Mi cuenta",
+    languageContributing: {
+      start: "\xBFHablas uno de estos idiomas, o incluso uno que a\xFAn no est\xE1 presente aqu\xED? Si quieres ver Roarer en tu idioma, puedes ",
+      githubLink: "traducirlo en GitHub",
+      end: "!"
+    }
+  };
   const languages = {
     en,
-    de
+    de,
+    es
   };
   const i18n = createI18n({
     legacy: false,
