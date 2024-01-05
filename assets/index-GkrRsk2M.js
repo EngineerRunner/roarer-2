@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-0_yWewOJ.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-gEbM-SXD.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -75368,8 +75368,10 @@ let __tla = (async () => {
       const posts = ref([]);
       const newPostsAmount = ref(0);
       const pagesAmount = ref(1);
+      const stopShowingLoadMore = ref(false);
       const postsSchema = z.object({
-        autoget: postSchema.array()
+        autoget: postSchema.array(),
+        pages: z.number()
       });
       (async () => {
         const response = await getResponseFromAPIRequest(requestURL, {
@@ -75380,7 +75382,8 @@ let __tla = (async () => {
           alert("Failed to get posts.");
           return;
         }
-        posts.value = postsSchema.parse(response).autoget;
+        posts.value = response.autoget;
+        stopShowingLoadMore.value = response.pages === 1;
         const newPostSchema = z.object({
           cmd: z.literal("direct"),
           val: postSchema.and(z.object({
@@ -75418,6 +75421,7 @@ let __tla = (async () => {
         pagesAmount.value = page;
         newPostsAmount.value += newPosts.length;
         loadingMore.value = false;
+        stopShowingLoadMore.value = response.pages === page;
       };
       return (_ctx, _cache) => {
         return openBlock(), createElementBlock(Fragment, null, [
@@ -75456,12 +75460,13 @@ let __tla = (async () => {
               "onReply"
             ]);
           }), 128)),
-          createBaseVNode("button", {
+          !stopShowingLoadMore.value ? (openBlock(), createElementBlock("button", {
+            key: 4,
             type: "button",
             class: "w-full rounded-xl bg-slate-800 py-1",
             disabled: loadingMore.value,
             onClick: loadMore
-          }, toDisplayString$1(loadingMore.value ? unref(t)("loadingMore") : unref(t)("loadMore")), 9, _hoisted_2$5)
+          }, toDisplayString$1(loadingMore.value ? unref(t)("loadingMore") : unref(t)("loadMore")), 9, _hoisted_2$5)) : createCommentVNode("", true)
         ], 64);
       };
     }
