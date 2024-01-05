@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-ujdkgyPa.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-oog9_Gkj.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -75981,8 +75981,10 @@ You will lose ownership of the group.`)) {
       return (_ctx, _cache) => {
         return openBlock(), createElementBlock("div", _hoisted_1$2, [
           createVNode(_sfc_main$d, {
-            title: "Groups"
-          }),
+            title: unref(t)("routeGroups")
+          }, null, 8, [
+            "title"
+          ]),
           openGroupchat.value === null ? (openBlock(), createElementBlock(Fragment, {
             key: 0
           }, [
