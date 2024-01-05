@@ -641,9 +641,6 @@ video {
 .-z-50 {
   z-index: -50;
 }
-.float-right {
-  float: right;
-}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -738,6 +735,9 @@ video {
 }
 .gap-2 {
   gap: 0.5rem;
+}
+.gap-4 {
+  gap: 1rem;
 }
 .gap-x-2 {
   -moz-column-gap: 0.5rem;
@@ -858,6 +858,10 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 .font-bold {
   font-weight: 700;
