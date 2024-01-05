@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-gEbM-SXD.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-KGUCKbvJ.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -77056,10 +77056,127 @@ You will lose ownership of the group.`)) {
       end: "!"
     }
   };
+  const hu = {
+    languageName: "Magyar",
+    roarer: "Roarer",
+    routeHome: "F\u0151oldal",
+    routeInbox: "\xDCzenetek",
+    routeGroups: "Csoportok",
+    routeUsers: "Felhaszn\xE1l\xF3k",
+    routeSettings: "Be\xE1ll\xEDt\xE1sok",
+    signOut: "Kijelentkez\xE9s",
+    developmentStatus: {
+      start: "A Roarer \xE9ppen nagyon korai ponton van a fejleszt\xE9s\xE9ben, ha lenne \xF6tlete vagy hib\xE1t tal\xE1lna, k\xE9rem mindk\xE9pp t\xE1j\xE9koztasson r\xF3la ",
+      githubRepositoryLink: "Github-on",
+      end: "!"
+    },
+    inDevelopmentMode: "\xC9ppen fejleszt\u0151i m\xF3dban van.",
+    loginHeader: "Bejelentkez\xE9s a Roarer-be",
+    loginUsername: "Felhaszn\xE1l\xF3n\xE9v:",
+    loginPassword: "Jelsz\xF3:",
+    loginSubmit: "Bejelentkez\xE9s",
+    loginSignUp: "Regisztr\xE1ci\xF3",
+    loginFail: "Nem siker\xFClt bejelentkezni. Meg akarja pr\xF3b\xE1lni \xFAjra?",
+    loginSignoutConfirm: "Biztos ki akar jelentkezni?",
+    loadMore: "T\xF6bb bet\xF6lt\xE9se",
+    loadingMore: "Bet\xF6lt\xE9s...",
+    onlineUsers: "Online felhaszn\xE1l\xF3k: ({n})",
+    enterPostPlaceholder: "\xCDrjon valamit!",
+    enterPostSend: "K\xFCld\xE9s!",
+    typingUsers: "\xC9ppen \xEDr\xF3 felhaszn\xE1l\xF3k:",
+    online: "Online",
+    noTypingUsers: "\xC9ppen senki sem \xEDr.",
+    discordBridgePost: "Ez a poszt a Discord szerveren volt k\xE9sz\xEDtve.",
+    webhookBridgePost: "Ez a poszt egy Webhook-kal volt k\xE9sz\xEDtve. Mivel ezek nem mennek \xE1t Meower-nak a fi\xF3krendszer\xE9n, b\xE1rki k\xFCldhet \xFCzenetet b\xE1rmilyen n\xE9ven.",
+    splashBridgePost: "Ez a poszt Splash-al volt k\xE9sz\xEDtve. Mivel ezek nem mennek \xE1t Meower-nak a fi\xF3krendszer\xE9n, b\xE1rki k\xFCldhet \xFCzenetet b\xE1rmilyen n\xE9ven.",
+    revoltBridgePost: "Ez a poszt a Revolt szerveren volt k\xE9sz\xEDtve.",
+    deletePost: "T\xF6rl\xE9s",
+    editPost: "Szerkeszt\xE9s",
+    replyPost: "V\xE1laszol\xE1s",
+    reportPost: "Jelent\xE9s",
+    cancelEditingPost: "M\xE9gse",
+    reloadPostButton: "\xDAjrat\xF6lt\xE9s",
+    deletePostConfirm: "Biztos hogy t\xF6r\xF6lni szeretn\xE9?",
+    reportReason: "Indok:",
+    confirmReport: "Teljesen biztos ebben? A k\xF6vetkez\u0151 indok\xE9rt jelent:\n{reason}\n\nPost:\n{post}",
+    reportSuccess: "Bejelentve.",
+    chatDM: "\xDCzen\xE9s k\xF6zvetlen\xFCl",
+    chatSettings: "Be\xE1ll\xEDt\xE1sok",
+    chatPeople: "Felhaszn\xE1l\xF3k",
+    renameChatFail: "Nem siker\xFClt \xFAjranevezni a cseveg\xE9st: {status}",
+    addMemberChatFail: "Nem siker\xFClt hozz\xE1adni a tagot: {status}",
+    removeMemberChatFail: "Nem siker\xFClt elt\xE1vol\xEDtani a tagot: {status}",
+    leaveChatFail: "Nem siker\xFClt elhagyni a cseveg\xE9st: {status}",
+    promoteChatFail: "Nem siker\xFClt el\u0151l\xE9ptetni a felhaszn\xE1l\xF3t: {status}",
+    back: "Vissza",
+    chatRename: "\xC1tnevez\xE9s",
+    chatAddMember: "Hozz\xE1ad\xE1s",
+    chatOwner: "K\xE9sz\xEDt\u0151",
+    chatPromote: "El\u0151l\xE9ptet\xE9s",
+    chatRemove: "Elt\xE1vol\xEDt\xE1s",
+    profileInformationFail: "Nem siker\xFClt megszerezni a profilinform\xE1ci\xF3kat: {status}",
+    configFail: "Nem siker\xFClt friss\xEDteni a profilj\xE1t: {errmsg}",
+    configSuccess: "Friss\xEDtette a profilj\xE1t.",
+    newPassword: "Mi legyen az \xFAj jelszava?",
+    oldPassword: "Mi a r\xE9gi jelszava?",
+    passwordChangeFail: "Nem siker\xFClt friss\xEDteni: {errmsg}",
+    alsoRevokeTokens: "Vissza akarja vonni az \xF6sszes tokent is?",
+    revokeTokensConfirm: "Biztos ebben? Ezut\xE1n vissza kell jelentkeznie minden eszk\xF6z\xE9n.",
+    revokeTokensFail: "Nem siker\xFClt visszavonni a tokeneket: {errmsg}",
+    deleteAccountConfirm: "Biztos ebben? Ezt SEHOGY sem lehet vissza csin\xE1lni a t\xF6rl\xE9s ut\xE1n. A fi\xF3kja t\xF6rl\u0151dni fog 7 nap m\xFAlva.",
+    deleteAccountPasswordPrompt: "K\xE9rlek add meg a jelszavad, hogy meger\u0151s\xEDtsd a t\xF6rl\xE9st.",
+    deleteAccountFail: "Nem siker\xFClt t\xF6r\xF6lni a fi\xF3kot: {err}",
+    usersSectionMe: "\xC9n",
+    usersMeQuote: "Id\xE9zetem:",
+    usersMePfp: "Profilk\xE9pem:",
+    profilePictureAlt: "Profilk\xE9p #{n}",
+    updateProfile: "Profil friss\xEDt\xE9se",
+    changePassword: "Jelsz\xF3 megv\xE1ltoztat\xE1sa",
+    revokeTokens: "Az \xF6sszes token visszavon\xE1sa",
+    revokeTokensInfo: "Ez ki fogja jelentkeztetni a fi\xF3kjat minden eszk\xF6z\xE9b\u0151l.",
+    deleteAccount: "Fi\xF3k t\xF6rl\xE9se",
+    deleteAccountInfo: "Ez \xD6R\xD6KRE fogja t\xF6r\xF6lni a fi\xF3kj\xE1t. A t\xF6rl\xE9s ut\xE1n NEM lehet visszavonni.",
+    language: "Nyelv",
+    credits: "K\xF6zrem\u0171k\xF6d\u0151k",
+    contributorsThanks: {
+      start: "K\xF6sz\xF6n\xF6m minden ",
+      contributorsLink: "k\xF6zrem\u0171k\xF6d\u0151nek",
+      end: " akik ezt lehet\u0151v\xE9 tett\xE9k."
+    },
+    mascotThanks: {
+      start: "K\xFCl\xF6n k\xF6sz\xF6net ",
+      end: "-nek, hogy elk\xE9sz\xEDtette a (jelenleg m\xE9g elnevezetlen) figur\xE1j\xE1t a Roarernek."
+    },
+    blockUserConfirm: "Biztosan blokkolni akarja ezt a felhaszn\xE1l\xF3t? Nem fogja l\xE1tni ennek a felhaszn\xE1l\xF3nak az \xFCzeneteit.",
+    unblockUserConfirm: "Biztosan fel akarja oldani a blokkol\xE1s\xE1t ennek a felhaszn\xE1l\xF3nak?",
+    blockFailed: "Nem siker\xFClt blokkolni: {status}",
+    unblockFailed: "Nem siker\xFClt feloldani a felhaszn\xE1l\xF3 blokkol\xE1s\xE1t: {status}",
+    username: "Felhaszn\xE1l\xF3n\xE9v",
+    userSearch: "Indul\xE1s",
+    noUserPlaceholder: "Keressen egy felhaszn\xE1l\xF3t hogy l\xE1ssa a profilj\xE1t!",
+    lastSeenUser: "Utolj\xE1ra l\xE1tva: {date}",
+    banned: "Letiltott",
+    accountCreated: "Fi\xF3k l\xE9trehozva: {date}",
+    block: "Blokkol\xE1s",
+    unblock: "Blokk felold\xE1sa",
+    createChat: "K\xE9sz\xEDt\xE9s",
+    chatNickname: "Becen\xE9v",
+    openDMFail: "Nem siker\xFClt megnyitni a k\xF6zvetlen \xFCzenetet: {status}",
+    chatCreateFail: "Nem siker\xFClt cseveg\xE9st k\xE9sz\xEDteni: {status}",
+    chatGetFail: "Nem siker\xFClt megszerezni a cseveg\xE9seit: {status}",
+    disconnected: "Megszakadt a kapcsolat. Kattintson az OK gombra, hogy \xFAjrat\xF6ltse az oldalt.",
+    myAccount: "Az \xE9n fi\xF3kom",
+    languageContributing: {
+      start: "Besz\xE9l ezek a nyelvek k\xF6z\xFCl valamelyiken, vagy ak\xE1r olyanon, amely m\xE9g nincs a list\xE1n? Ha akarod l\xE1tni Roarer-t a saj\xE1t nyelveden, tudsz seg\xEDteni ",
+      githubLink: "leford\xEDtani a nyelvedre Github-on",
+      end: "!"
+    }
+  };
   const languages = {
     en,
     es,
-    de
+    de,
+    hu
   };
   const i18n = createI18n({
     legacy: false,
