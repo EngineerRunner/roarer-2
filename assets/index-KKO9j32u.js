@@ -9139,7 +9139,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-VY2Mltx2.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-bGCuz17N.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -9229,38 +9229,7 @@ let __tla = (async () => {
       this._websocket.addEventListener("message", (message) => this.messageHandle(JSON.parse(message.data)));
     }
   }
-  const relationshipSchema = z.object({
-    state: z.literal(0).or(z.literal(2)),
-    updated_at: z.number().nullable()
-  });
-  const individualRelationshipPacketSchema = relationshipSchema.and(z.object({
-    username: z.string()
-  }));
-  const relationshipPacketSchema = z.object({
-    cmd: z.literal("direct"),
-    val: z.object({
-      mode: z.literal("update_relationship"),
-      payload: individualRelationshipPacketSchema
-    })
-  });
-  const useRelationshipStore = defineStore("relationshipStore", () => {
-    const blockedUsers = ref(/* @__PURE__ */ new Set());
-    const cloudlinkStore = useCloudlinkStore();
-    cloudlinkStore.lookFor(relationshipPacketSchema, (packet) => {
-      if (packet.val.payload.state === 0) {
-        blockedUsers.value.delete(packet.val.payload.username);
-        blockedUsers.value = blockedUsers.value;
-      } else {
-        blockedUsers.value.add(packet.val.payload.username);
-        blockedUsers.value = blockedUsers.value;
-      }
-    }, false);
-    return {
-      blockedUsers
-    };
-  });
   const useCloudlinkStore = defineStore("cloudlink", () => {
-    const relationshipStore = useRelationshipStore();
     const cloudlink = ref(new CloudlinkClient({
       url: "wss://api.meower.org/v0/cloudlink",
       log: false
@@ -9334,24 +9303,40 @@ let __tla = (async () => {
         fun(parsed.data);
       });
     };
-    lookFor(z.object({
-      cmd: z.literal("direct"),
-      val: z.object({
-        mode: z.literal("auth"),
-        payload: z.object({
-          relationships: individualRelationshipPacketSchema.array()
-        })
-      })
-    }), (packet) => {
-      packet.val.payload.relationships.forEach((relationship) => {
-        relationshipStore.blockedUsers.add(relationship.username);
-        relationshipStore.blockedUsers = relationshipStore.blockedUsers;
-      });
-    });
     return {
       cloudlink,
       send,
       lookFor
+    };
+  });
+  const relationshipSchema = z.object({
+    state: z.literal(0).or(z.literal(2)),
+    updated_at: z.number().nullable()
+  });
+  const individualRelationshipPacketSchema = relationshipSchema.and(z.object({
+    username: z.string()
+  }));
+  const relationshipPacketSchema = z.object({
+    cmd: z.literal("direct"),
+    val: z.object({
+      mode: z.literal("update_relationship"),
+      payload: individualRelationshipPacketSchema
+    })
+  });
+  const useRelationshipStore = defineStore("relationshipStore", () => {
+    const blockedUsers = ref(/* @__PURE__ */ new Set());
+    const cloudlinkStore = useCloudlinkStore();
+    cloudlinkStore.lookFor(relationshipPacketSchema, (packet) => {
+      if (packet.val.payload.state === 0) {
+        blockedUsers.value.delete(packet.val.payload.username);
+        blockedUsers.value = blockedUsers.value;
+      } else {
+        blockedUsers.value.add(packet.val.payload.username);
+        blockedUsers.value = blockedUsers.value;
+      }
+    }, false);
+    return {
+      blockedUsers
     };
   });
   const _hoisted_1$d = createBaseVNode("div", {
@@ -9396,11 +9381,13 @@ let __tla = (async () => {
     setup(__props) {
       const cloudlinkStore = useCloudlinkStore();
       const loginStatusStore = useLoginStatusStore();
+      const relationshipStore = useRelationshipStore();
       const logInSchema = z.object({
         mode: z.literal("auth"),
         payload: z.object({
           username: z.string(),
-          token: z.string()
+          token: z.string(),
+          relationships: individualRelationshipPacketSchema.array()
         })
       });
       const username = ref("");
@@ -9420,6 +9407,7 @@ let __tla = (async () => {
           }
         }, logInSchema);
         loginStatusStore.isLoggedIn = true;
+        relationshipStore.blockedUsers = new Set(response.payload.relationships.filter((relationship) => relationship.state === 2).map((relationship) => relationship.username));
         return response;
       };
       const loginEvent = async (e) => {
@@ -9602,7 +9590,7 @@ let __tla = (async () => {
       title: {}
     },
     setup(__props) {
-      useRelationshipStore();
+      const relationshipStore = useRelationshipStore();
       const { title } = __props;
       document.title = "Roarer - " + title;
       const isDevStore = useIsDevStore();
@@ -9636,7 +9624,8 @@ let __tla = (async () => {
               createBaseVNode("button", {
                 class: "text-sky-400 underline",
                 onClick: _cache[4] || (_cache[4] = ($event) => goTo("settings"))
-              }, " Settings ")
+              }, " Settings "),
+              createTextVNode(" " + toDisplayString(unref(relationshipStore).blockedUsers), 1)
             ])
           ]),
           _hoisted_4$5,
