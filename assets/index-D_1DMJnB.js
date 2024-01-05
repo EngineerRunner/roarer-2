@@ -9139,7 +9139,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-bGCuz17N.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-A-25fy3a.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -9590,7 +9590,6 @@ let __tla = (async () => {
       title: {}
     },
     setup(__props) {
-      const relationshipStore = useRelationshipStore();
       const { title } = __props;
       document.title = "Roarer - " + title;
       const isDevStore = useIsDevStore();
@@ -9624,8 +9623,7 @@ let __tla = (async () => {
               createBaseVNode("button", {
                 class: "text-sky-400 underline",
                 onClick: _cache[4] || (_cache[4] = ($event) => goTo("settings"))
-              }, " Settings "),
-              createTextVNode(" " + toDisplayString(unref(relationshipStore).blockedUsers), 1)
+              }, " Settings ")
             ])
           ]),
           _hoisted_4$5,
