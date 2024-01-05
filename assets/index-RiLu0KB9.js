@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-oog9_Gkj.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-0_yWewOJ.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -13992,7 +13992,7 @@ let __tla = (async () => {
   const _hoisted_8$5 = {
     class: "space-x-2"
   };
-  const _hoisted_9$5 = [
+  const _hoisted_9$4 = [
     "disabled"
   ];
   const _hoisted_10$4 = [
@@ -14162,7 +14162,7 @@ let __tla = (async () => {
                     class: "rounded-xl bg-slate-700 px-2 py-1",
                     type: "submit",
                     disabled: loading.value
-                  }, toDisplayString$1(unref(t)("loginSubmit")), 9, _hoisted_9$5),
+                  }, toDisplayString$1(unref(t)("loginSubmit")), 9, _hoisted_9$4),
                   createBaseVNode("button", {
                     class: "rounded-xl bg-slate-700 px-2 py-1",
                     type: "button",
@@ -14192,7 +14192,7 @@ let __tla = (async () => {
     })
   });
   const _hoisted_1$c = {
-    class: "mb-2 flex flex-wrap justify-between gap-4"
+    class: "mb-2 flex flex-col items-center gap-1"
   };
   const _hoisted_2$9 = {
     class: "flex flex-wrap gap-x-4"
@@ -14204,22 +14204,19 @@ let __tla = (async () => {
     class: "flex flex-wrap items-center gap-2"
   };
   const _hoisted_5$5 = {
-    class: ""
-  };
-  const _hoisted_6$4 = {
     href: "https://github.com/mybearworld/roarer",
     class: "text-sky-400 underline"
   };
-  const _hoisted_7$4 = {
+  const _hoisted_6$4 = {
     key: 0,
     class: "text-red-200"
   };
-  const _hoisted_8$4 = createBaseVNode("a", {
+  const _hoisted_7$4 = createBaseVNode("a", {
     href: "https://github.com/meower-media-co/Meower-Server/tree/main",
     class: "text-sky-400 underline",
     target: "_blank"
   }, "Meower Server", -1);
-  const _hoisted_9$4 = createBaseVNode("a", {
+  const _hoisted_8$4 = createBaseVNode("a", {
     href: "https://github.com/meower-media-co/Meower-Svelte/tree/master",
     class: "text-sky-400 underline",
     target: "_blank"
@@ -14244,43 +14241,41 @@ let __tla = (async () => {
           createBaseVNode("div", _hoisted_1$c, [
             createBaseVNode("div", _hoisted_2$9, [
               createBaseVNode("h1", _hoisted_3$8, "Roarer\xA0-\xA0" + toDisplayString$1(_ctx.title), 1),
-              createBaseVNode("div", _hoisted_4$5, [
-                createBaseVNode("button", {
-                  class: "flex text-nowrap text-sky-400 underline",
-                  onClick: _cache[0] || (_cache[0] = ($event) => goTo("home"))
-                }, toDisplayString$1(unref(t)("routeHome")), 1),
-                createBaseVNode("button", {
-                  class: "flex text-nowrap text-sky-400 underline",
-                  onClick: _cache[1] || (_cache[1] = ($event) => goTo("inbox"))
-                }, toDisplayString$1(unref(t)("routeInbox")), 1),
-                createBaseVNode("button", {
-                  class: "flex text-nowrap text-sky-400 underline",
-                  onClick: _cache[2] || (_cache[2] = ($event) => goTo("group"))
-                }, toDisplayString$1(unref(t)("routeGroups")), 1),
-                createBaseVNode("button", {
-                  class: "flex text-nowrap text-sky-400 underline",
-                  onClick: _cache[3] || (_cache[3] = ($event) => goTo("users"))
-                }, toDisplayString$1(unref(t)("routeUsers")), 1),
-                createBaseVNode("button", {
-                  class: "flex text-nowrap text-sky-400 underline",
-                  onClick: _cache[4] || (_cache[4] = ($event) => goTo("settings"))
-                }, toDisplayString$1(unref(t)("routeSettings")), 1)
-              ])
-            ]),
-            createBaseVNode("div", _hoisted_5$5, [
               createVNode(_sfc_main$e)
+            ]),
+            createBaseVNode("div", _hoisted_4$5, [
+              createBaseVNode("button", {
+                class: "flex text-nowrap text-sky-400 underline",
+                onClick: _cache[0] || (_cache[0] = ($event) => goTo("home"))
+              }, toDisplayString$1(unref(t)("routeHome")), 1),
+              createBaseVNode("button", {
+                class: "flex text-nowrap text-sky-400 underline",
+                onClick: _cache[1] || (_cache[1] = ($event) => goTo("inbox"))
+              }, toDisplayString$1(unref(t)("routeInbox")), 1),
+              createBaseVNode("button", {
+                class: "flex text-nowrap text-sky-400 underline",
+                onClick: _cache[2] || (_cache[2] = ($event) => goTo("group"))
+              }, toDisplayString$1(unref(t)("routeGroups")), 1),
+              createBaseVNode("button", {
+                class: "flex text-nowrap text-sky-400 underline",
+                onClick: _cache[3] || (_cache[3] = ($event) => goTo("users"))
+              }, toDisplayString$1(unref(t)("routeUsers")), 1),
+              createBaseVNode("button", {
+                class: "flex text-nowrap text-sky-400 underline",
+                onClick: _cache[4] || (_cache[4] = ($event) => goTo("settings"))
+              }, toDisplayString$1(unref(t)("routeSettings")), 1)
             ])
           ]),
           createBaseVNode("p", null, [
             createTextVNode(toDisplayString$1(unref(t)("developmentStatus.start")), 1),
-            createBaseVNode("a", _hoisted_6$4, toDisplayString$1(unref(t)("developmentStatus.githubRepositoryLink")), 1),
+            createBaseVNode("a", _hoisted_5$5, toDisplayString$1(unref(t)("developmentStatus.githubRepositoryLink")), 1),
             createTextVNode(toDisplayString$1(unref(t)("developmentStatus.end")), 1)
           ]),
-          unref(isDevStore).isDev ? (openBlock(), createElementBlock("p", _hoisted_7$4, [
+          unref(isDevStore).isDev ? (openBlock(), createElementBlock("p", _hoisted_6$4, [
             createTextVNode(toDisplayString$1(unref(t)("inDevelopmentMode")) + " ", 1),
-            _hoisted_8$4,
+            _hoisted_7$4,
             createTextVNode(" - "),
-            _hoisted_9$4
+            _hoisted_8$4
           ])) : createCommentVNode("", true)
         ]);
       };

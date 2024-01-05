@@ -733,17 +733,11 @@ video {
 .justify-center {
   justify-content: center;
 }
-.justify-between {
-  justify-content: space-between;
-}
 .gap-1 {
   gap: 0.25rem;
 }
 .gap-2 {
   gap: 0.5rem;
-}
-.gap-4 {
-  gap: 1rem;
 }
 .gap-x-2 {
   -moz-column-gap: 0.5rem;
