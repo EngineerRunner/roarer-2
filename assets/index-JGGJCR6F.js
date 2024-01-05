@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-IfR-9fhu.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-g7H4Hh-m.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -76815,25 +76815,25 @@ You will lose ownership of the group.`)) {
   const es = {
     languageName: "Espa\xF1ol",
     roarer: "Roarer",
-    routeHome: "Home",
+    routeHome: "P\xE1gina principal",
     routeInbox: "Bandeja de entrada",
     routeGroups: "Grupos",
     routeUsers: "Usuarios",
     routeSettings: "Ajustes",
-    signOut: "Cerra sesi\xF3n",
+    signOut: "Cerrar sesi\xF3n",
     developmentStatus: {
       start: "Nota: Roarer se encuentra actualmente en una etapa muy temprana de su desarrollo. Informe errores y/o sugiera funciones en ",
       githubRepositoryLink: "el repositorio de GitHub",
       end: "!"
     },
     inDevelopmentMode: "Est\xE1s en modo desarrollo.",
-    loginHeader: "Inicia sesi\xF3n en Roarer",
+    loginHeader: "Iniciar sesi\xF3n en Roarer",
     loginUsername: "Nombre de usuario:",
     loginPassword: "Contrase\xF1a:",
     loginSubmit: "Iniciar sesi\xF3n",
     loginSignUp: "Crear cuenta",
     loginFail: "No se pudo iniciar sesi\xF3n. Esto puede deberse a que tu token ha sido revocado. \xBFQuieres intentarlo de nuevo?",
-    loginSignoutConfirm: "\xBFEst\xE1s seguro de que quieres cerra sesi\xF3n?",
+    loginSignoutConfirm: "\xBFEst\xE1s seguro de que quieres cerrar sesi\xF3n?",
     loadMore: "Cargar m\xE1s",
     loadingMore: "Cargando m\xE1s...",
     onlineUsers: "Usuarios online ({n})",
@@ -76843,8 +76843,8 @@ You will lose ownership of the group.`)) {
     online: "Online",
     noTypingUsers: "Nadie est\xE1 escribiendo.",
     discordBridgePost: "Este post ha sido creado en el servidor de Discord.",
-    webhookBridgePost: "Esta publicaci\xF3n fue creada a trav\xE9s de un webhook. Estos no pasan por el sistema de cuentas de Meowers, cualquiera puede crear un mensaje con cualquier nombre.",
-    splashBridgePost: "Esta publicaci\xF3n fue creada a trav\xE9s de Splash. Estos no pasan por el sistema de cuentas de Meower o Splash, cualquiera puede crear un mensaje con cualquier nombre.",
+    webhookBridgePost: "Esta post fue creado a trav\xE9s de un webhook. Estos no pasan por el sistema de cuentas de Meower, cualquiera puede crear un mensaje con cualquier nombre.",
+    splashBridgePost: "Esta post fue creado a trav\xE9s de Splash. Estos no pasan por el sistema de cuentas de Meower o Splash, cualquiera puede crear un mensaje con cualquier nombre.",
     revoltBridgePost: "Este post fue creado en el servidor de Revolt.",
     deletePost: "Eliminar",
     editPost: "Editar",
@@ -76876,7 +76876,7 @@ You will lose ownership of the group.`)) {
     newPassword: "\xBFQu\xE9 quieres que sea tu nueva contrase\xF1a?",
     oldPassword: "\xBFCu\xE1l es tu contrase\xF1a actual?",
     passwordChangeFail: "No se ha podido actualizar la contrase\xF1a: {errmsg}",
-    alsoRevokeTokens: "\xBFQuieres tambi\xE9n revocar todos los tokens?",
+    alsoRevokeTokens: "\xBFQuieres revocar tambi\xE9n todos los tokens?",
     revokeTokensConfirm: "\xBFEst\xE1s seguro? Tendr\xE1s que iniciar sesi\xF3n en cada dispositivo de nuevo.",
     revokeTokensFail: "No se ha podido revocar los tokens: {errmsg}",
     deleteAccountConfirm: "\xBFEst\xE1s seguro? No hay absolutamente ninguna manera de deshacer esto. Su cuenta ser\xE1 eliminada PERMANENTEMENTE despu\xE9s de 7 d\xEDas.",

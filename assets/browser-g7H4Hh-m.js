@@ -1,4 +1,4 @@
-import { g as getDefaultExportFromCjs, __tla as __tla_0 } from "./index-NiJ8r3Em.js";
+import { g as getDefaultExportFromCjs, __tla as __tla_0 } from "./index-JGGJCR6F.js";
 let browser$2;
 let __tla = Promise.all([
   (() => {
