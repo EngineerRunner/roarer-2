@@ -1,4 +1,4 @@
-import { g as getDefaultExportFromCjs, __tla as __tla_0 } from "./index-bN-Wiza7.js";
+import { g as getDefaultExportFromCjs, __tla as __tla_0 } from "./index-MAYK6nsw.js";
 let browser$2;
 let __tla = Promise.all([
   (() => {

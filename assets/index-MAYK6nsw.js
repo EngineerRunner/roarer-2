@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-tBjel0gB.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-r3gHH9T2.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -77068,6 +77068,11 @@ You will lose ownership of the group.`)) {
       start: "Sprichst du eine dieser Sprachen, oder sogar eine, die hier noch nicht verf\xFCgbar ist? Wenn du Roarer in deiner Sprache sehen willst, kannst du es ",
       githubLink: "auf GitHub \xFCbersetzen",
       end: "!"
+    },
+    contributed: {
+      start: "Hattest du eine Idee f\xFCr Roarer, die eingef\xFChrt wurde? Hast du einen Fehler in Roarer gefunden, der gel\xF6st wurde? Bitte lasse deine Mitwirkung bei ",
+      issueLink: "diesem Github-Issue",
+      end: " z\xE4hlen!"
     }
   };
   const hu = {
