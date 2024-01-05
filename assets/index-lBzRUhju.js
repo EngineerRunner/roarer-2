@@ -9139,7 +9139,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-tBxJ_ayQ.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-VY2Mltx2.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -9229,7 +9229,38 @@ let __tla = (async () => {
       this._websocket.addEventListener("message", (message) => this.messageHandle(JSON.parse(message.data)));
     }
   }
+  const relationshipSchema = z.object({
+    state: z.literal(0).or(z.literal(2)),
+    updated_at: z.number().nullable()
+  });
+  const individualRelationshipPacketSchema = relationshipSchema.and(z.object({
+    username: z.string()
+  }));
+  const relationshipPacketSchema = z.object({
+    cmd: z.literal("direct"),
+    val: z.object({
+      mode: z.literal("update_relationship"),
+      payload: individualRelationshipPacketSchema
+    })
+  });
+  const useRelationshipStore = defineStore("relationshipStore", () => {
+    const blockedUsers = ref(/* @__PURE__ */ new Set());
+    const cloudlinkStore = useCloudlinkStore();
+    cloudlinkStore.lookFor(relationshipPacketSchema, (packet) => {
+      if (packet.val.payload.state === 0) {
+        blockedUsers.value.delete(packet.val.payload.username);
+        blockedUsers.value = blockedUsers.value;
+      } else {
+        blockedUsers.value.add(packet.val.payload.username);
+        blockedUsers.value = blockedUsers.value;
+      }
+    }, false);
+    return {
+      blockedUsers
+    };
+  });
   const useCloudlinkStore = defineStore("cloudlink", () => {
+    const relationshipStore = useRelationshipStore();
     const cloudlink = ref(new CloudlinkClient({
       url: "wss://api.meower.org/v0/cloudlink",
       log: false
@@ -9303,6 +9334,20 @@ let __tla = (async () => {
         fun(parsed.data);
       });
     };
+    lookFor(z.object({
+      cmd: z.literal("direct"),
+      val: z.object({
+        mode: z.literal("auth"),
+        payload: z.object({
+          relationships: individualRelationshipPacketSchema.array()
+        })
+      })
+    }), (packet) => {
+      packet.val.payload.relationships.forEach((relationship) => {
+        relationshipStore.blockedUsers.add(relationship.username);
+        relationshipStore.blockedUsers = relationshipStore.blockedUsers;
+      });
+    });
     return {
       cloudlink,
       send,
@@ -9557,6 +9602,7 @@ let __tla = (async () => {
       title: {}
     },
     setup(__props) {
+      useRelationshipStore();
       const { title } = __props;
       document.title = "Roarer - " + title;
       const isDevStore = useIsDevStore();
@@ -10331,10 +10377,11 @@ let __tla = (async () => {
       const { chat } = __props;
       const cloudlinkStore = useCloudlinkStore();
       const loginStatusStore = useLoginStatusStore();
+      const relationshipStore = useRelationshipStore();
       const typingUsers = ref(/* @__PURE__ */ new Set());
       const shownTypingUsers = computed(() => [
         ...typingUsers.value
-      ].filter((item) => item !== loginStatusStore.username && (!chat || chat.members.includes(item))));
+      ].filter((item) => item !== loginStatusStore.username && (!chat || chat.members.includes(item)) && !relationshipStore.blockedUsers.has(item)));
       const typingIndicatorSchema = z.object({
         cmd: z.literal("direct"),
         val: z.object({
@@ -70187,7 +70234,7 @@ let __tla = (async () => {
   const _hoisted_15$2 = createBaseVNode("span", {
     class: "sr-only"
   }, "Edit", -1);
-  const _hoisted_16$1 = createBaseVNode("span", {
+  const _hoisted_16$2 = createBaseVNode("span", {
     class: "sr-only"
   }, "Report", -1);
   const _hoisted_17$1 = createBaseVNode("span", {
@@ -70232,6 +70279,7 @@ let __tla = (async () => {
       const locationStore = useLocationStore();
       const loginStatusStore = useLoginStatusStore();
       const onlineListStore = useOnlinelistStore();
+      const relationshipStore = useRelationshipStore();
       const { post, inbox, dontUpdate } = __props;
       const emit2 = __emit;
       const username = ref(inbox ? post.u === loginStatusStore.username ? "Notification" : "Announcement" : post.u);
@@ -70508,7 +70556,7 @@ ${post.p}`)) {
       });
       return (_ctx, _cache) => {
         const _component_Post = resolveComponent("Post", true);
-        return edited.value ? (openBlock(), createBlock(_component_Post, {
+        return edited.value && !unref(relationshipStore).blockedUsers.has(username.value) ? (openBlock(), createBlock(_component_Post, {
           key: 0,
           post: edited.value,
           onReply: _cache[0] || (_cache[0] = (u, p2) => emit2("reply", u, p2))
@@ -70517,7 +70565,7 @@ ${post.p}`)) {
         ])) : (openBlock(), createElementBlock(Fragment, {
           key: 1
         }, [
-          !isDeleted.value ? (openBlock(), createElementBlock("div", _hoisted_1$8, [
+          !isDeleted.value && !unref(relationshipStore).blockedUsers.has(username.value) ? (openBlock(), createElementBlock("div", _hoisted_1$8, [
             createBaseVNode("div", _hoisted_2$6, [
               !isItalicUser.value ? (openBlock(), createElementBlock("button", {
                 key: 0,
@@ -70587,7 +70635,7 @@ ${post.p}`)) {
                   createVNode(unref(IconAlertTriangle), {
                     "aria-hidden": ""
                   }),
-                  _hoisted_16$1
+                  _hoisted_16$2
                 ])) : createCommentVNode("", true),
                 createBaseVNode("button", {
                   class: "h-4 w-4",
@@ -70867,7 +70915,7 @@ ${post.p}`)) {
   const _hoisted_15$1 = createBaseVNode("span", {
     class: "sr-only"
   }, "Promote", -1);
-  const _hoisted_16 = [
+  const _hoisted_16$1 = [
     "onClick"
   ];
   const _hoisted_17 = createBaseVNode("span", {
@@ -71048,7 +71096,7 @@ You will lose ownership of the group.`)) {
                     "aria-hidden": ""
                   }),
                   _hoisted_17
-                ], 8, _hoisted_16)) : createCommentVNode("", true)
+                ], 8, _hoisted_16$1)) : createCommentVNode("", true)
               ]);
             }), 256))
           ])
@@ -71791,12 +71839,17 @@ You will lose ownership of the group.`)) {
   const _hoisted_15 = createBaseVNode("div", {
     class: "mt-2"
   }, null, -1);
+  const _hoisted_16 = {
+    class: "space-x-2"
+  };
   const _sfc_main$1 = defineComponent({
     __name: "Users",
     setup(__props) {
+      useCloudlinkStore();
       const locationStore = useLocationStore();
-      useLoginStatusStore();
+      const loginStatusStore = useLoginStatusStore();
       const onlinelistStore = useOnlinelistStore();
+      const relationshipStore = useRelationshipStore();
       const username = ref("");
       const submit = (e) => {
         e.preventDefault();
@@ -71827,6 +71880,25 @@ You will lose ownership of the group.`)) {
         }
         userProfile.value = response;
       });
+      const isBlocked = computed(() => relationshipStore.blockedUsers.has(username.value));
+      const block2 = async () => {
+        if (locationStore.sublocation === null || locationStore.location !== "users") {
+          return;
+        }
+        if (!confirm(`Are you sure you want to ${isBlocked.value ? "unblock this user?" : "block this user? You won't be able to see their messages."}`)) {
+          return;
+        }
+        const response = await apiRequest(`/users/${locationStore.sublocation}/relationship`, {
+          method: "PATCH",
+          auth: loginStatusStore,
+          body: JSON.stringify({
+            state: isBlocked.value ? 0 : 2
+          })
+        });
+        if (response.status !== 200) {
+          alert(`Couldn't ${isBlocked.value ? "unblock" : "block"}: ${response.status}`);
+        }
+      };
       return (_ctx, _cache) => {
         return openBlock(), createElementBlock("div", _hoisted_1, [
           createVNode(_sfc_main$d, {
@@ -71867,11 +71939,20 @@ You will lose ownership of the group.`)) {
               _hoisted_14,
               createBaseVNode("p", null, "Account created: " + toDisplayString(unref(formatDate)(userProfile.value.created)), 1),
               _hoisted_15,
-              createBaseVNode("button", {
-                type: "button",
-                class: "rounded-xl bg-slate-800 px-2 py-1",
-                onClick: _cache[1] || (_cache[1] = ($event) => dm(userProfile.value._id))
-              }, " DM ")
+              createBaseVNode("div", _hoisted_16, [
+                !isBlocked.value ? (openBlock(), createElementBlock("button", {
+                  key: 0,
+                  type: "button",
+                  class: "rounded-xl bg-slate-800 px-2 py-1",
+                  onClick: _cache[1] || (_cache[1] = ($event) => dm(userProfile.value._id))
+                }, " DM ")) : createCommentVNode("", true),
+                unref(locationStore).sublocation !== unref(loginStatusStore).username ? (openBlock(), createElementBlock("button", {
+                  key: 1,
+                  type: "button",
+                  class: "rounded-xl bg-slate-800 px-2 py-1",
+                  onClick: block2
+                }, toDisplayString(isBlocked.value ? "Unblock" : "Block"), 1)) : createCommentVNode("", true)
+              ])
             ])
           ]))
         ]);
