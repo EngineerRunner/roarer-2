@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-nkhNHNpF.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-65lGc6sY.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -15106,6 +15106,48 @@ let __tla = (async () => {
       };
     }
   });
+  const apiRequest = async (url, { auth = null, method = "GET", body }) => {
+    const username = auth == null ? void 0 : auth.username;
+    const token = auth == null ? void 0 : auth.token;
+    const authHeaders = username && token ? {
+      username,
+      token
+    } : {};
+    const response = await fetch(`https://api.meower.org${url}`, {
+      method,
+      headers: {
+        ...authHeaders,
+        "content-type": "application/json"
+      },
+      body
+    });
+    return {
+      status: response.status,
+      response: await response.json()
+    };
+  };
+  const getResponseFromAPIRequest = async (url, { auth = null, method = "GET", body, schema }) => {
+    const { status, response } = await apiRequest(url, {
+      auth,
+      method,
+      body
+    });
+    if (status !== 200) {
+      return {
+        status,
+        response
+      };
+    }
+    return schema.parse(response);
+  };
+  const formatDate = (timestamp, language) => {
+    const formatter = new Intl.DateTimeFormat(language, {
+      dateStyle: "long",
+      timeStyle: "medium"
+    });
+    const date = new Date(timestamp * 1e3);
+    return formatter.format(date);
+  };
   getDefaultExportFromCjs = function(x) {
     return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
   };
@@ -25111,7 +25153,7 @@ let __tla = (async () => {
     if (hasRequiredMarkdown)
       return markdown_1;
     hasRequiredMarkdown = 1;
-    function markdown(hljs2) {
+    function markdown2(hljs2) {
       const regex2 = hljs2.regex;
       const INLINE_HTML = {
         begin: /<\/?[A-Za-z_]/,
@@ -25335,7 +25377,7 @@ let __tla = (async () => {
         ]
       };
     }
-    markdown_1 = markdown;
+    markdown_1 = markdown2;
     return markdown_1;
   }
   var dart_1;
@@ -74757,48 +74799,6 @@ let __tla = (async () => {
     const opts = md.utils.assign({}, defaults2, options || {});
     emoji_plugin$1(md, opts);
   }
-  const apiRequest = async (url, { auth = null, method = "GET", body }) => {
-    const username = auth == null ? void 0 : auth.username;
-    const token = auth == null ? void 0 : auth.token;
-    const authHeaders = username && token ? {
-      username,
-      token
-    } : {};
-    const response = await fetch(`https://api.meower.org${url}`, {
-      method,
-      headers: {
-        ...authHeaders,
-        "content-type": "application/json"
-      },
-      body
-    });
-    return {
-      status: response.status,
-      response: await response.json()
-    };
-  };
-  const getResponseFromAPIRequest = async (url, { auth = null, method = "GET", body, schema }) => {
-    const { status, response } = await apiRequest(url, {
-      auth,
-      method,
-      body
-    });
-    if (status !== 200) {
-      return {
-        status,
-        response
-      };
-    }
-    return schema.parse(response);
-  };
-  const formatDate = (timestamp, language) => {
-    const formatter = new Intl.DateTimeFormat(language, {
-      dateStyle: "long",
-      timeStyle: "medium"
-    });
-    const date = new Date(timestamp * 1e3);
-    return formatter.format(date);
-  };
   const hostWhitelist = [
     "https://meower.org/",
     "https://http.meower.org/",
@@ -74821,6 +74821,137 @@ let __tla = (async () => {
     "https://cdn.discordapp.com/",
     "https://media.discordapp.net/"
   ];
+  const IMAGE_REGEX = /\[([^\]]+?): (?! )([^\]]+?)\]/g;
+  const markdown = MarkdownIt({
+    breaks: true,
+    highlight(str, lang) {
+      if (lang && HighlightJS.getLanguage(lang)) {
+        return HighlightJS.highlight(str, {
+          language: lang
+        }).value;
+      }
+      return "";
+    }
+  }).use(emoji_plugin, {
+    shortcuts: {}
+  });
+  const parseMarkdown = (md, locationStore) => {
+    const html = toHTML(md);
+    const domParser = new DOMParser();
+    const postDocument = domParser.parseFromString(html, "text/html");
+    postDocument.querySelectorAll("img").forEach((img) => {
+      if (!hostWhitelist.some((host) => img.src.startsWith(host))) {
+        const span = document.createElement("span");
+        span.textContent = img.dataset.original || `![${img.src}](${img.alt})`;
+        img.replaceWith(span);
+      }
+    });
+    postDocument.querySelectorAll("a").forEach((element) => {
+      var _a2;
+      const text2 = element.textContent;
+      if (!text2 || !((_a2 = element.textContent) == null ? void 0 : _a2.startsWith("@"))) {
+        return;
+      }
+      const user = text2.slice(1);
+      element.href = "#";
+      element.role = "button";
+      element.addEventListener("click", (e) => {
+        e.preventDefault();
+        locationStore.sublocation = user;
+        locationStore.location = "users";
+      });
+    });
+    postDocument.querySelectorAll("img").forEach(async (element) => {
+      const request = await fetch(element.src);
+      if (request.status !== 200) {
+        return;
+      }
+      const contentType = request.headers.get("content-type");
+      const isAudio = contentType == null ? void 0 : contentType.startsWith("audio/");
+      const isVideo = contentType == null ? void 0 : contentType.startsWith("video/");
+      if (!isAudio && !isVideo) {
+        return;
+      }
+      const newElement = document.createElement(isAudio ? "audio" : "video");
+      newElement.src = element.src;
+      newElement.controls = true;
+      element.replaceWith(newElement);
+    });
+    const sanitizedHTML = postDocument.body.innerHTML;
+    const linkifiedHTML = linkifyHtml(sanitizedHTML, {
+      formatHref: {
+        mention: (href) => `https://app.meower.org/users${href}`
+      }
+    });
+    return linkifiedHTML;
+  };
+  const toHTML = (md) => {
+    const tokens = markdown.parse(md, {});
+    tokens.forEach((token) => {
+      if (token.type !== "inline" || !token.children) {
+        return;
+      }
+      const newChildren = [];
+      token.children.forEach((child) => {
+        if (child.type !== "text") {
+          newChildren.push(child);
+          return;
+        }
+        const content = child.content;
+        const images = [
+          ...content.matchAll(IMAGE_REGEX)
+        ];
+        if (images.length === 0) {
+          newChildren.push(child);
+          return;
+        }
+        const newTextTokens = [];
+        images.forEach((image2, i) => {
+          const index = image2.index;
+          if (index === void 0) {
+            return;
+          }
+          const beforeText = content.slice(0, index);
+          const beforeTextToken = new Token("text", "", 0);
+          beforeTextToken.content = beforeText;
+          newTextTokens.push(beforeTextToken);
+          const [fullMatch, alt, src] = image2;
+          const imageToken = new Token("image", "", 0);
+          imageToken.content = alt;
+          imageToken.tag = "img";
+          imageToken.attrs = [
+            [
+              "alt",
+              ""
+            ],
+            [
+              "src",
+              src
+            ],
+            [
+              "data-original",
+              fullMatch
+            ]
+          ];
+          const altTextToken = new Token("text", "", 0);
+          altTextToken.content = alt;
+          imageToken.children = [
+            altTextToken
+          ];
+          newTextTokens.push(imageToken);
+          if (i === images.length - 1) {
+            const afterText = content.slice(index + fullMatch.length);
+            const afterTextToken = new Token("text", "", 0);
+            afterTextToken.content = afterText;
+            newTextTokens.push(afterTextToken);
+          }
+        });
+        newChildren.push(...newTextTokens);
+      });
+      token.children = newChildren;
+    });
+    return markdown.renderer.render(tokens, markdown.options, {});
+  };
   const _hoisted_1$8 = {
     key: 0,
     class: "group flex flex-col rounded-xl bg-slate-800 px-2 py-1"
@@ -75052,140 +75183,8 @@ let __tla = (async () => {
         }
         editInputValue.value.style.height = `${editInputValue.value.scrollHeight}px`;
       };
+      const markdownPostContent = computed(() => parseMarkdown(postContent.value, locationStore));
       const reload = () => location.reload();
-      const md = MarkdownIt({
-        breaks: true,
-        highlight(str, lang) {
-          if (lang && HighlightJS.getLanguage(lang)) {
-            return HighlightJS.highlight(str, {
-              language: lang
-            }).value;
-          }
-          return "";
-        }
-      }).use(emoji_plugin, {
-        shortcuts: {}
-      });
-      const IMAGE_REGEX = /\[([^\]]+?): (?! )([^\]]+?)\]/g;
-      const markdownPostContent = computed(() => {
-        const tokens = md.parse(postContent.value, {});
-        tokens.forEach((token) => {
-          if (token.type !== "inline" || !token.children) {
-            return;
-          }
-          const newChildren = [];
-          token.children.forEach((child) => {
-            if (child.type !== "text") {
-              newChildren.push(child);
-              return;
-            }
-            const content = child.content;
-            const images = [
-              ...content.matchAll(IMAGE_REGEX)
-            ];
-            if (images.length === 0) {
-              newChildren.push(child);
-              return;
-            }
-            const newTextTokens = [];
-            images.forEach((image2, i) => {
-              const index = image2.index;
-              if (index === void 0) {
-                return;
-              }
-              const beforeText = content.slice(0, index);
-              const beforeTextToken = new Token("text", "", 0);
-              beforeTextToken.content = beforeText;
-              newTextTokens.push(beforeTextToken);
-              const [fullMatch, alt, src] = image2;
-              const imageToken = new Token("image", "", 0);
-              imageToken.content = alt;
-              imageToken.tag = "img";
-              imageToken.attrs = [
-                [
-                  "alt",
-                  ""
-                ],
-                [
-                  "src",
-                  src
-                ],
-                [
-                  "data-original",
-                  fullMatch
-                ]
-              ];
-              const altTextToken = new Token("text", "", 0);
-              altTextToken.content = alt;
-              imageToken.children = [
-                altTextToken
-              ];
-              newTextTokens.push(imageToken);
-              if (i === images.length - 1) {
-                const afterText = content.slice(index + fullMatch.length);
-                const afterTextToken = new Token("text", "", 0);
-                afterTextToken.content = afterText;
-                newTextTokens.push(afterTextToken);
-              }
-            });
-            newChildren.push(...newTextTokens);
-          });
-          token.children = newChildren;
-        });
-        const parsed = md.renderer.render(tokens, md.options, {});
-        const domParser = new DOMParser();
-        const postDocument = domParser.parseFromString(parsed, "text/html");
-        postDocument.querySelectorAll("img").forEach((img) => {
-          if (!hostWhitelist.some((host) => img.src.startsWith(host))) {
-            const span = document.createElement("span");
-            span.textContent = img.dataset.original || `![${img.src}](${img.alt})`;
-            img.replaceWith(span);
-          }
-        });
-        const sanitizedHTML = postDocument.body.innerHTML;
-        const linkifiedHTML = linkifyHtml(sanitizedHTML, {
-          formatHref: {
-            mention: (href) => `https://app.meower.org/users${href}`
-          }
-        });
-        return linkifiedHTML;
-      });
-      const postContentElement = ref(null);
-      effect(() => {
-        if (postContentElement.value === null) {
-          return;
-        }
-        postContentElement.value.querySelectorAll("a").forEach((element) => {
-          var _a2;
-          const text2 = element.textContent;
-          if (!text2 || !((_a2 = element.textContent) == null ? void 0 : _a2.startsWith("@"))) {
-            return;
-          }
-          const user = text2.slice(1);
-          element.href = "#";
-          element.role = "button";
-          element.addEventListener("click", (e) => {
-            e.preventDefault();
-            goToUser(user);
-          });
-        });
-        postContentElement.value.querySelectorAll("img").forEach(async (element) => {
-          const request = await fetch(element.src);
-          if (request.status !== 200) {
-            return;
-          }
-          const contentType = request.headers.get("content-type");
-          const isAudio = contentType == null ? void 0 : contentType.startsWith("audio/");
-          const isVideo = contentType == null ? void 0 : contentType.startsWith("video/");
-          if (!isAudio && !isVideo) {
-            return;
-          }
-          const newElement = document.createElement(isAudio ? "audio" : "video");
-          newElement.src = element.src;
-          newElement.controls = true;
-          element.replaceWith(newElement);
-        });
-      });
       return (_ctx, _cache) => {
         const _component_Post = resolveComponent("Post", true);
         return edited.value && !unref(relationshipStore).blockedUsers.has(username.value) ? (openBlock(), createBlock(_component_Post, {
@@ -75323,8 +75322,7 @@ let __tla = (async () => {
               createBaseVNode("div", {
                 class: normalizeClass(`max-h-96 space-y-2 overflow-y-auto break-words [&_a]:text-sky-400 [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-slate-500 [&_blockquote]:pl-2 [&_blockquote]:italic [&_blockquote]:text-slate-400 [&_h1]:text-4xl [&_h1]:font-bold [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-2xl [&_h3]:font-bold [&_h4]:text-xl [&_h4]:font-bold [&_h5]:text-lg [&_h5]:font-bold [&_h6]:text-sm [&_h6]:font-bold [&_hr]:mx-8 [&_hr]:my-2 [&_hr]:border-slate-500 [&_img]:max-h-96 [&_li]:list-inside [&_ol_li]:list-decimal [&_td]:border-[1px] [&_td]:border-slate-500 [&_td]:px-2 [&_td]:py-1 [&_th]:border-[1px] [&_th]:border-slate-500 [&_th]:px-2 [&_th]:py-1 [&_ul_li]:list-disc ${isItalicUser.value ? "italic" : ""}`),
                 innerHTML: markdownPostContent.value,
-                ref_key: "postContentElement",
-                ref: postContentElement
+                ref: "postContentElement"
               }, null, 10, _hoisted_23),
               postContent.value.endsWith("\u200C") && username.value === "mybearworld" && !unref(isBridged) ? (openBlock(), createElementBlock("button", {
                 key: 0,
