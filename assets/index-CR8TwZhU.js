@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-ENIKBpYL.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-muNo3HYJ.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -13857,10 +13857,12 @@ let __tla = (async () => {
       this._websocket.addEventListener("message", (message) => this.messageHandle(JSON.parse(message.data)));
     }
   }
+  const api = "https://api.meower.org";
+  const cl = "wss://api.meower.org/v0/cloudlink";
   const useCloudlinkStore = defineStore("cloudlink", () => {
     const { t } = useI18n();
     const cloudlink = ref(new CloudlinkClient({
-      url: "wss://api.meower.org/v0/cloudlink",
+      url: cl,
       log: false
     }));
     const interval = setInterval(() => {
@@ -15113,7 +15115,7 @@ let __tla = (async () => {
       username,
       token
     } : {};
-    const response = await fetch(`https://api.meower.org${url}`, {
+    const response = await fetch(`${api}${url}`, {
       method,
       headers: {
         ...authHeaders,
