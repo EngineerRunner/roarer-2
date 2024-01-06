@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-6upQ39bx.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-ENIKBpYL.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -74846,7 +74846,11 @@ let __tla = (async () => {
         img.replaceWith(span);
         return;
       }
-      if (!img.dataset.original) {
+      if (img.dataset.original) {
+        const clonedImg = img.cloneNode();
+        postDocument.body.append(clonedImg);
+        img.remove();
+      } else {
         img.classList.add("inline-block");
       }
     });
