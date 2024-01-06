@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-65lGc6sY.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-6upQ39bx.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -74844,6 +74844,10 @@ let __tla = (async () => {
         const span = document.createElement("span");
         span.textContent = img.dataset.original || `![${img.src}](${img.alt})`;
         img.replaceWith(span);
+        return;
+      }
+      if (!img.dataset.original) {
+        img.classList.add("inline-block");
       }
     });
     postDocument.querySelectorAll("a").forEach((element) => {
