@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-r3gHH9T2.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-KGUCKbvJ.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -13992,7 +13992,7 @@ let __tla = (async () => {
   const _hoisted_8$5 = {
     class: "space-x-2"
   };
-  const _hoisted_9$5 = [
+  const _hoisted_9$4 = [
     "disabled"
   ];
   const _hoisted_10$4 = [
@@ -14162,7 +14162,7 @@ let __tla = (async () => {
                     class: "rounded-xl bg-slate-700 px-2 py-1",
                     type: "submit",
                     disabled: loading.value
-                  }, toDisplayString$1(unref(t)("loginSubmit")), 9, _hoisted_9$5),
+                  }, toDisplayString$1(unref(t)("loginSubmit")), 9, _hoisted_9$4),
                   createBaseVNode("button", {
                     class: "rounded-xl bg-slate-700 px-2 py-1",
                     type: "button",
@@ -14208,19 +14208,15 @@ let __tla = (async () => {
     class: "text-sky-400 underline"
   };
   const _hoisted_6$4 = {
-    href: "https://github.com/mybearworld/roarer/issues/38",
-    class: "text-sky-400 underline"
-  };
-  const _hoisted_7$4 = {
     key: 0,
     class: "text-red-200"
   };
-  const _hoisted_8$4 = createBaseVNode("a", {
+  const _hoisted_7$4 = createBaseVNode("a", {
     href: "https://github.com/meower-media-co/Meower-Server/tree/main",
     class: "text-sky-400 underline",
     target: "_blank"
   }, "Meower Server", -1);
-  const _hoisted_9$4 = createBaseVNode("a", {
+  const _hoisted_8$4 = createBaseVNode("a", {
     href: "https://github.com/meower-media-co/Meower-Svelte/tree/master",
     class: "text-sky-400 underline",
     target: "_blank"
@@ -14275,16 +14271,11 @@ let __tla = (async () => {
             createBaseVNode("a", _hoisted_5$5, toDisplayString$1(unref(t)("developmentStatus.githubRepositoryLink")), 1),
             createTextVNode(toDisplayString$1(unref(t)("developmentStatus.end")), 1)
           ]),
-          createBaseVNode("p", null, [
-            createTextVNode(toDisplayString$1(unref(t)("contributed.start")), 1),
-            createBaseVNode("a", _hoisted_6$4, toDisplayString$1(unref(t)("contributed.issueLink")), 1),
-            createTextVNode(toDisplayString$1(unref(t)("contributed.end")), 1)
-          ]),
-          unref(isDevStore).isDev ? (openBlock(), createElementBlock("p", _hoisted_7$4, [
+          unref(isDevStore).isDev ? (openBlock(), createElementBlock("p", _hoisted_6$4, [
             createTextVNode(toDisplayString$1(unref(t)("inDevelopmentMode")) + " ", 1),
-            _hoisted_8$4,
+            _hoisted_7$4,
             createTextVNode(" - "),
-            _hoisted_9$4
+            _hoisted_8$4
           ])) : createCommentVNode("", true)
         ]);
       };
@@ -76831,11 +76822,6 @@ You will lose ownership of the group.`)) {
       start: "Do you speak one of these languages, or even one that isn't present here yet? If you want to see Roarer in your language, you can ",
       githubLink: "translate it on GitHub",
       end: "!"
-    },
-    contributed: {
-      start: "Have you had an idea for Roarer that got implemented? Have you found a bug in Roarer that got fixed? Please get your contribution counted at ",
-      issueLink: "this Github issue",
-      end: "!"
     }
   };
   const es = {
@@ -77068,11 +77054,6 @@ You will lose ownership of the group.`)) {
       start: "Sprichst du eine dieser Sprachen, oder sogar eine, die hier noch nicht verf\xFCgbar ist? Wenn du Roarer in deiner Sprache sehen willst, kannst du es ",
       githubLink: "auf GitHub \xFCbersetzen",
       end: "!"
-    },
-    contributed: {
-      start: "Hattest du eine Idee f\xFCr Roarer, die eingef\xFChrt wurde? Hast du einen Fehler in Roarer gefunden, der gel\xF6st wurde? Bitte lasse deine Mitwirkung bei ",
-      issueLink: "diesem Github-Issue",
-      end: " z\xE4hlen!"
     }
   };
   const hu = {
