@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-lYIeuykA.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-iNKRqaUa.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -75232,9 +75232,11 @@ let __tla = (async () => {
         return edited.value && !unref(relationshipStore).blockedUsers.has(username.value) ? (openBlock(), createBlock(_component_Post, {
           key: 0,
           post: edited.value,
+          reply: _ctx.reply,
           onReply: _cache[0] || (_cache[0] = (u, p2) => emit2("reply", u, p2, _ctx.post.post_id))
         }, null, 8, [
-          "post"
+          "post",
+          "reply"
         ])) : (openBlock(), createElementBlock(Fragment, {
           key: 1
         }, [
