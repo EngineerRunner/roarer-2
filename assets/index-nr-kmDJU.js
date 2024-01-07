@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-RBf4ZPsg.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-lYIeuykA.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -74845,7 +74845,6 @@ let __tla = (async () => {
     shortcuts: {}
   });
   const parseMarkdown = (md, locationStore, inline2 = false, images = true) => {
-    console.log(images, md);
     const html = toHTML(md, inline2);
     const domParser = new DOMParser();
     const postDocument = domParser.parseFromString(html, "text/html");
