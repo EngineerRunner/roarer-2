@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-OU2UoTxL.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-lmfPv845.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -74844,7 +74844,7 @@ let __tla = (async () => {
   }).use(emoji_plugin, {
     shortcuts: {}
   });
-  const parseMarkdown = (md, locationStore, inline2 = false, images = true) => {
+  const parseMarkdown = async (md, locationStore, inline2 = false, images = true) => {
     const html = toHTML(md, inline2);
     const domParser = new DOMParser();
     const postDocument = domParser.parseFromString(html, "text/html");
@@ -74878,7 +74878,9 @@ let __tla = (async () => {
         locationStore.location = "users";
       });
     });
-    postDocument.querySelectorAll("img").forEach(async (element) => {
+    await Promise.all([
+      ...postDocument.querySelectorAll("img")
+    ].map(async (element) => {
       const request = await fetch(element.src);
       if (request.status !== 200) {
         return;
@@ -74893,7 +74895,7 @@ let __tla = (async () => {
       newElement.src = element.src;
       newElement.controls = true;
       element.replaceWith(newElement);
-    });
+    }));
     const sanitizedHTML = postDocument.body.innerHTML;
     const linkifiedHTML = linkifyHtml(sanitizedHTML, {
       formatHref: {
@@ -75229,7 +75231,8 @@ let __tla = (async () => {
         }
         editInputValue.value.style.height = `${editInputValue.value.scrollHeight}px`;
       };
-      const markdownPostContent = computed(() => parseMarkdown(postContent.value, locationStore, reply, !reply));
+      const markdownPostContent = ref("");
+      effect(async () => markdownPostContent.value = await parseMarkdown(postContent.value, locationStore, reply, !reply));
       const reload = () => location.reload();
       return (_ctx, _cache) => {
         const _component_Post = resolveComponent("Post", true);
