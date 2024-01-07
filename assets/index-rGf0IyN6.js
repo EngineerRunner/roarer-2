@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-muNo3HYJ.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-Fkd_QTt5.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -14284,12 +14284,25 @@ let __tla = (async () => {
     }
   });
   const autoResizeTextarea = (el) => {
-    el.style.maxHeight = "0px";
-    el.style.height = `${el.scrollHeight}px`;
-    el.style.maxHeight = "";
+    requestAnimationFrame(() => {
+      el.style.maxHeight = "0px";
+      el.style.height = `${el.scrollHeight}px`;
+      el.style.maxHeight = "";
+    });
   };
   const resetTextareaSize = (el) => {
     el.style.height = "";
+  };
+  const REPLY_REGEX = /^@[a-z_0-9-]+(?: ".{0,40}…?" (?:\(([a-f0-9\-]+)\))?| \[([a-f0-9\-]+)\])?(?:\n| )(.*)$/is;
+  const getReply = (post) => {
+    const match = post.match(REPLY_REGEX);
+    if (!match) {
+      return null;
+    }
+    return {
+      id: match[1] || match[2] || null,
+      postContent: match[3]
+    };
   };
   const postSchema = z.object({
     edited_at: z.number().optional(),
@@ -14366,17 +14379,20 @@ let __tla = (async () => {
         posting.value = false;
       };
       const trimmedPost = (post2) => {
-        const quoteMatch = post2.match(/^@[a-z_0-9-]+(?: ".{0,40}…?"| \[[a-z0-9\-]+\])? (.*)$/i);
-        const postContent2 = quoteMatch ? quoteMatch[1] : post2;
+        const reply2 = getReply(post2);
+        const postContent2 = reply2 ? reply2.postContent : post2;
         const slicedPostContent = postContent2.slice(0, 40);
         const replacedPostContent = slicedPostContent.slice(0, 40).replace(/: /g, ":  ").replace(/!/g, "!\u200C").replace(/\n/g, " ");
         return `"${replacedPostContent.slice(0, 40).trim()}${postContent2.length > 39 ? "\u2026" : ""}"`;
       };
       const inputRef = ref(null);
-      const reply = (username, content) => {
-        var _a2;
-        postContent.value = `@${username} ${trimmedPost(content)} ` + postContent.value;
-        (_a2 = inputRef.value) == null ? void 0 : _a2.focus();
+      const reply = (username, content, postId) => {
+        postContent.value = `@${username} ${trimmedPost(content)} (${postId})
+` + postContent.value;
+        if (inputRef.value) {
+          inputRef.value.focus();
+          autoResizeTextarea(inputRef.value);
+        }
       };
       const lastTypingIndicatorSent = ref(null);
       const input = () => {
@@ -74837,12 +74853,13 @@ let __tla = (async () => {
   }).use(emoji_plugin, {
     shortcuts: {}
   });
-  const parseMarkdown = (md, locationStore) => {
+  const parseMarkdown = (md, locationStore, images = true) => {
+    console.log(images, md);
     const html = toHTML(md);
     const domParser = new DOMParser();
     const postDocument = domParser.parseFromString(html, "text/html");
     postDocument.querySelectorAll("img").forEach((img) => {
-      if (!hostWhitelist.some((host) => img.src.startsWith(host))) {
+      if (!images || !hostWhitelist.some((host) => img.src.startsWith(host))) {
         const span = document.createElement("span");
         span.textContent = img.dataset.original || `![${img.src}](${img.alt})`;
         img.replaceWith(span);
@@ -74963,46 +74980,45 @@ let __tla = (async () => {
     return markdown.renderer.render(tokens, markdown.options, {});
   };
   const _hoisted_1$8 = {
-    key: 0,
-    class: "group flex flex-col rounded-xl bg-slate-800 px-2 py-1"
+    class: "relative flex items-center gap-x-2"
   };
   const _hoisted_2$6 = {
-    class: "relative flex flex-wrap items-center gap-x-2"
-  };
-  const _hoisted_3$5 = {
-    key: 1,
+    key: 2,
     class: "inline-block text-green-400"
   };
-  const _hoisted_4$4 = createBaseVNode("span", {
+  const _hoisted_3$5 = createBaseVNode("span", {
     class: "sr-only"
   }, "Online", -1);
-  const _hoisted_5$4 = [
+  const _hoisted_4$4 = [
     "title"
   ];
-  const _hoisted_6$3 = {
+  const _hoisted_5$4 = {
     class: "sr-only"
   };
-  const _hoisted_7$3 = [
+  const _hoisted_6$3 = [
     "title"
   ];
-  const _hoisted_8$3 = {
+  const _hoisted_7$3 = {
     class: "sr-only"
   };
-  const _hoisted_9$3 = [
+  const _hoisted_8$3 = [
     "title"
   ];
-  const _hoisted_10$3 = {
+  const _hoisted_9$3 = {
     class: "sr-only"
   };
-  const _hoisted_11$3 = [
+  const _hoisted_10$3 = [
     "title"
   ];
+  const _hoisted_11$3 = {
+    class: "sr-only"
+  };
   const _hoisted_12$3 = {
-    class: "sr-only"
+    key: 7,
+    class: "visible absolute right-0 top-0 ml-auto space-x-3 sm:invisible group-hover:sm:visible"
   };
   const _hoisted_13$2 = {
-    key: 6,
-    class: "visible absolute right-0 top-0 ml-auto space-x-3 sm:invisible group-hover:sm:visible"
+    class: "sr-only"
   };
   const _hoisted_14$2 = {
     class: "sr-only"
@@ -75014,25 +75030,22 @@ let __tla = (async () => {
     class: "sr-only"
   };
   const _hoisted_17$2 = {
-    class: "sr-only"
-  };
-  const _hoisted_18 = {
     key: 0
   };
-  const _hoisted_19 = [
+  const _hoisted_18 = [
     "value"
   ];
-  const _hoisted_20 = {
+  const _hoisted_19 = {
     class: "space-x-2"
   };
-  const _hoisted_21 = {
+  const _hoisted_20 = {
     type: "submit",
     class: "rounded-xl bg-slate-700 px-2 py-1"
   };
-  const _hoisted_22 = {
-    key: 1
+  const _hoisted_21 = {
+    key: 2
   };
-  const _hoisted_23 = [
+  const _hoisted_22 = [
     "innerHTML"
   ];
   const _sfc_main$9 = defineComponent({
@@ -75043,6 +75056,9 @@ let __tla = (async () => {
         type: Boolean
       },
       dontUpdate: {
+        type: Boolean
+      },
+      reply: {
         type: Boolean
       }
     },
@@ -75057,7 +75073,7 @@ let __tla = (async () => {
       const onlineListStore = useOnlinelistStore();
       const relationshipStore = useRelationshipStore();
       const { t, locale } = useI18n();
-      const { post, inbox, dontUpdate } = __props;
+      const { post, inbox, dontUpdate, reply } = __props;
       const emit2 = __emit;
       const username = ref(inbox ? post.u === loginStatusStore.username ? "Notification" : "Announcement" : post.u);
       const postContent = ref(post.p);
@@ -75162,6 +75178,29 @@ let __tla = (async () => {
           }
         }
       };
+      const replyInfo = computed(() => {
+        const reply2 = getReply(postContent.value);
+        if (reply2 === null || reply2.id === null) {
+          return null;
+        }
+        return reply2;
+      });
+      const replyPost = ref(null);
+      effect(async () => {
+        const safeReplyInfo = replyInfo.value;
+        if (safeReplyInfo === null) {
+          return;
+        }
+        const response = await getResponseFromAPIRequest(`/posts?id=${safeReplyInfo.id}`, {
+          schema: postSchema,
+          auth: loginStatusStore
+        });
+        if ("status" in response) {
+          return;
+        }
+        postContent.value = safeReplyInfo.postContent;
+        replyPost.value = response;
+      });
       const report = async () => {
         const reason = prompt("Reason:");
         if (!reason) {
@@ -75193,71 +75232,86 @@ let __tla = (async () => {
         }
         editInputValue.value.style.height = `${editInputValue.value.scrollHeight}px`;
       };
-      const markdownPostContent = computed(() => parseMarkdown(postContent.value, locationStore));
+      const markdownPostContent = computed(() => parseMarkdown(postContent.value, locationStore, !reply));
       const reload = () => location.reload();
       return (_ctx, _cache) => {
         const _component_Post = resolveComponent("Post", true);
         return edited.value && !unref(relationshipStore).blockedUsers.has(username.value) ? (openBlock(), createBlock(_component_Post, {
           key: 0,
           post: edited.value,
-          onReply: _cache[0] || (_cache[0] = (u, p2) => emit2("reply", u, p2))
+          onReply: _cache[0] || (_cache[0] = (u, p2) => emit2("reply", u, p2, _ctx.post.post_id))
         }, null, 8, [
           "post"
         ])) : (openBlock(), createElementBlock(Fragment, {
           key: 1
         }, [
-          !isDeleted.value && !unref(relationshipStore).blockedUsers.has(username.value) ? (openBlock(), createElementBlock("div", _hoisted_1$8, [
-            createBaseVNode("div", _hoisted_2$6, [
-              !isItalicUser.value ? (openBlock(), createElementBlock("button", {
+          !isDeleted.value && !unref(relationshipStore).blockedUsers.has(username.value) ? (openBlock(), createElementBlock("div", {
+            key: 0,
+            class: normalizeClass(`group flex rounded-xl bg-slate-800 ${_ctx.reply ? "gap-2" : "flex-col px-2 py-1"}`)
+          }, [
+            replyPost.value ? (openBlock(), createBlock(_component_Post, {
+              key: 0,
+              post: replyPost.value,
+              reply: ""
+            }, null, 8, [
+              "post"
+            ])) : createCommentVNode("", true),
+            createBaseVNode("div", _hoisted_1$8, [
+              _ctx.reply ? (openBlock(), createBlock(unref(IconArrowForward), {
                 key: 0,
+                class: "inline-block",
+                "aria-hidden": ""
+              })) : createCommentVNode("", true),
+              !isItalicUser.value ? (openBlock(), createElementBlock("button", {
+                key: 1,
                 class: "font-bold",
                 onClick: _cache[1] || (_cache[1] = ($event) => goToUser(username.value))
               }, toDisplayString$1(username.value), 1)) : createCommentVNode("", true),
-              unref(onlineListStore).online.includes(username.value) ? (openBlock(), createElementBlock("span", _hoisted_3$5, [
+              unref(onlineListStore).online.includes(username.value) ? (openBlock(), createElementBlock("span", _hoisted_2$6, [
                 createVNode(unref(IconCircleFilled), {
                   class: "h-2 w-2",
                   "aria-hidden": ""
                 }),
-                _hoisted_4$4
+                _hoisted_3$5
               ])) : createCommentVNode("", true),
               _ctx.post.u === "Discord" ? (openBlock(), createElementBlock("span", {
-                key: 2,
+                key: 3,
                 title: unref(t)("discordBridgePost")
               }, [
                 createVNode(unref(IconBrandDiscord), {
                   class: "inline-block w-5",
                   "aria-hidden": ""
                 }),
-                createBaseVNode("span", _hoisted_6$3, toDisplayString$1(unref(t)("discordBridgePost")), 1)
-              ], 8, _hoisted_5$4)) : createCommentVNode("", true),
+                createBaseVNode("span", _hoisted_5$4, toDisplayString$1(unref(t)("discordBridgePost")), 1)
+              ], 8, _hoisted_4$4)) : createCommentVNode("", true),
               _ctx.post.u === "Webhooks" && !unref(isSplash) ? (openBlock(), createElementBlock("span", {
-                key: 3,
+                key: 4,
                 title: unref(t)("webhookBridgePost")
               }, [
                 createVNode(unref(IconWebhook), {
                   class: "inline-block w-5"
                 }),
-                createBaseVNode("span", _hoisted_8$3, toDisplayString$1(unref(t)("webhookBridgePost")), 1)
-              ], 8, _hoisted_7$3)) : createCommentVNode("", true),
+                createBaseVNode("span", _hoisted_7$3, toDisplayString$1(unref(t)("webhookBridgePost")), 1)
+              ], 8, _hoisted_6$3)) : createCommentVNode("", true),
               unref(isSplash) ? (openBlock(), createElementBlock("span", {
-                key: 4,
+                key: 5,
                 title: unref(t)("splashBridgePost")
               }, [
                 createVNode(unref(IconSailboat), {
                   class: "inline-block w-5"
                 }),
-                createBaseVNode("span", _hoisted_10$3, toDisplayString$1(unref(t)("splashBridgePost")), 1)
-              ], 8, _hoisted_9$3)) : createCommentVNode("", true),
+                createBaseVNode("span", _hoisted_9$3, toDisplayString$1(unref(t)("splashBridgePost")), 1)
+              ], 8, _hoisted_8$3)) : createCommentVNode("", true),
               _ctx.post.u === "RevowerJS" ? (openBlock(), createElementBlock("span", {
-                key: 5,
+                key: 6,
                 title: unref(t)("revoltBridgePost")
               }, [
                 createVNode(unref(IconBuildingBridge), {
                   class: "inline-block w-5"
                 }),
-                createBaseVNode("span", _hoisted_12$3, toDisplayString$1(unref(t)("revoltBridgePost")), 1)
-              ], 8, _hoisted_11$3)) : createCommentVNode("", true),
-              !editing.value && !_ctx.inbox ? (openBlock(), createElementBlock("div", _hoisted_13$2, [
+                createBaseVNode("span", _hoisted_11$3, toDisplayString$1(unref(t)("revoltBridgePost")), 1)
+              ], 8, _hoisted_10$3)) : createCommentVNode("", true),
+              !editing.value && !_ctx.inbox && !_ctx.reply ? (openBlock(), createElementBlock("div", _hoisted_12$3, [
                 _ctx.post.u === unref(loginStatusStore).username ? (openBlock(), createElementBlock(Fragment, {
                   key: 0
                 }, [
@@ -75268,7 +75322,7 @@ let __tla = (async () => {
                     createVNode(unref(IconTrash), {
                       "aria-hidden": ""
                     }),
-                    createBaseVNode("span", _hoisted_14$2, toDisplayString$1(unref(t)("deletePost")), 1)
+                    createBaseVNode("span", _hoisted_13$2, toDisplayString$1(unref(t)("deletePost")), 1)
                   ]),
                   createBaseVNode("button", {
                     class: "h-4 w-4",
@@ -75277,7 +75331,7 @@ let __tla = (async () => {
                     createVNode(unref(IconEdit), {
                       "aria-hidden": ""
                     }),
-                    createBaseVNode("span", _hoisted_15$2, toDisplayString$1(unref(t)("editPost")), 1)
+                    createBaseVNode("span", _hoisted_14$2, toDisplayString$1(unref(t)("editPost")), 1)
                   ])
                 ], 64)) : createCommentVNode("", true),
                 _ctx.post.u !== unref(loginStatusStore).username ? (openBlock(), createElementBlock("button", {
@@ -75288,27 +75342,28 @@ let __tla = (async () => {
                   createVNode(unref(IconAlertTriangle), {
                     "aria-hidden": ""
                   }),
-                  createBaseVNode("span", _hoisted_16$2, toDisplayString$1(unref(t)("reportPost")), 1)
+                  createBaseVNode("span", _hoisted_15$2, toDisplayString$1(unref(t)("reportPost")), 1)
                 ])) : createCommentVNode("", true),
                 createBaseVNode("button", {
                   class: "h-4 w-4",
-                  onClick: _cache[3] || (_cache[3] = ($event) => emit2("reply", username.value, postContent.value))
+                  onClick: _cache[3] || (_cache[3] = ($event) => emit2("reply", username.value, postContent.value, _ctx.post.post_id))
                 }, [
                   createVNode(unref(IconArrowForward), {
                     "aria-hidden": ""
                   }),
-                  createBaseVNode("span", _hoisted_17$2, toDisplayString$1(unref(t)("replyPost")), 1)
+                  createBaseVNode("span", _hoisted_16$2, toDisplayString$1(unref(t)("replyPost")), 1)
                 ])
               ])) : createCommentVNode("", true),
-              createBaseVNode("div", {
+              !_ctx.reply ? (openBlock(), createElementBlock("div", {
+                key: 8,
                 class: normalizeClass(`visible w-full text-sm italic text-slate-400 ${!isItalicUser.value ? "sm:hidden sm:w-auto group-hover:sm:inline-block" : ""}`)
               }, [
                 createTextVNode(toDisplayString$1(unref(formatDate)(_ctx.post.t.e, unref(locale))) + " ", 1),
-                edited.value || _ctx.post.edited_at ? (openBlock(), createElementBlock("span", _hoisted_18, "(edited)")) : createCommentVNode("", true)
-              ], 2)
+                edited.value || _ctx.post.edited_at ? (openBlock(), createElementBlock("span", _hoisted_17$2, "(edited)")) : createCommentVNode("", true)
+              ], 2)) : createCommentVNode("", true)
             ]),
             editing.value ? (openBlock(), createElementBlock("form", {
-              key: 0,
+              key: 1,
               onSubmit: edit
             }, [
               createBaseVNode("textarea", {
@@ -75320,21 +75375,21 @@ let __tla = (async () => {
                 ref: editInputValue,
                 onKeydown: editKeydown,
                 onInput: resizeTextarea
-              }, null, 40, _hoisted_19),
-              createBaseVNode("div", _hoisted_20, [
-                createBaseVNode("button", _hoisted_21, toDisplayString$1(unref(t)("editPost")), 1),
+              }, null, 40, _hoisted_18),
+              createBaseVNode("div", _hoisted_19, [
+                createBaseVNode("button", _hoisted_20, toDisplayString$1(unref(t)("editPost")), 1),
                 createBaseVNode("button", {
                   class: "rounded-xl bg-slate-700 px-2 py-1",
                   onClick: _cache[4] || (_cache[4] = ($event) => editing.value = false)
                 }, toDisplayString$1(unref(t)("cancelEditingPost")), 1)
               ])
-            ], 32)) : (openBlock(), createElementBlock("div", _hoisted_22, [
+            ], 32)) : (openBlock(), createElementBlock("div", _hoisted_21, [
               createBaseVNode("div", {
-                class: normalizeClass(`max-h-96 space-y-2 overflow-y-auto break-words [&_a]:text-sky-400 [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-slate-500 [&_blockquote]:pl-2 [&_blockquote]:italic [&_blockquote]:text-slate-400 [&_h1]:text-4xl [&_h1]:font-bold [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-2xl [&_h3]:font-bold [&_h4]:text-xl [&_h4]:font-bold [&_h5]:text-lg [&_h5]:font-bold [&_h6]:text-sm [&_h6]:font-bold [&_hr]:mx-8 [&_hr]:my-2 [&_hr]:border-slate-500 [&_img]:max-h-96 [&_li]:list-inside [&_ol_li]:list-decimal [&_td]:border-[1px] [&_td]:border-slate-500 [&_td]:px-2 [&_td]:py-1 [&_th]:border-[1px] [&_th]:border-slate-500 [&_th]:px-2 [&_th]:py-1 [&_ul_li]:list-disc ${isItalicUser.value ? "italic" : ""}`),
+                class: normalizeClass(`max-h-96 space-y-2 break-words [&_a]:text-sky-400 [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-slate-500 [&_blockquote]:pl-2 [&_blockquote]:italic [&_blockquote]:text-slate-400 [&_h1]:text-4xl [&_h1]:font-bold [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-2xl [&_h3]:font-bold [&_h4]:text-xl [&_h4]:font-bold [&_h5]:text-lg [&_h5]:font-bold [&_h6]:text-sm [&_h6]:font-bold [&_hr]:mx-8 [&_hr]:my-2 [&_hr]:border-slate-500 [&_img]:max-h-96 [&_li]:list-inside [&_ol_li]:list-decimal [&_td]:border-[1px] [&_td]:border-slate-500 [&_td]:px-2 [&_td]:py-1 [&_th]:border-[1px] [&_th]:border-slate-500 [&_th]:px-2 [&_th]:py-1 [&_ul_li]:list-disc ${isItalicUser.value ? "italic" : ""} ${_ctx.reply ? "line-clamp-1 overflow-hidden" : "overflow-y-auto"}`),
                 innerHTML: markdownPostContent.value,
                 ref: "postContentElement"
-              }, null, 10, _hoisted_23),
-              postContent.value.endsWith("\u200C") && username.value === "mybearworld" && !unref(isBridged) ? (openBlock(), createElementBlock("button", {
+              }, null, 10, _hoisted_22),
+              postContent.value.endsWith("\u200C") && username.value === "mybearworld" && !unref(isBridged) && !_ctx.reply ? (openBlock(), createElementBlock("button", {
                 key: 0,
                 class: "mt-2 flex items-center gap-1 rounded-xl bg-slate-700 px-2 py-1",
                 onClick: reload
@@ -75346,7 +75401,7 @@ let __tla = (async () => {
                 createTextVNode(" " + toDisplayString$1(unref(t)("reloadPostButton")), 1)
               ])) : createCommentVNode("", true)
             ]))
-          ])) : createCommentVNode("", true)
+          ], 2)) : createCommentVNode("", true)
         ], 64));
       };
     }
