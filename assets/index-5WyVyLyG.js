@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-K5SR_C1I.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-RBf4ZPsg.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -74844,9 +74844,9 @@ let __tla = (async () => {
   }).use(emoji_plugin, {
     shortcuts: {}
   });
-  const parseMarkdown = (md, locationStore, images = true) => {
+  const parseMarkdown = (md, locationStore, inline2 = false, images = true) => {
     console.log(images, md);
-    const html = toHTML(md);
+    const html = toHTML(md, inline2);
     const domParser = new DOMParser();
     const postDocument = domParser.parseFromString(html, "text/html");
     postDocument.querySelectorAll("img").forEach((img) => {
@@ -74903,8 +74903,8 @@ let __tla = (async () => {
     });
     return linkifiedHTML;
   };
-  const toHTML = (md) => {
-    const tokens = markdown.parse(md, {});
+  const toHTML = (md, inline2) => {
+    const tokens = inline2 ? markdown.parseInline(md, {}) : markdown.parse(md, {});
     tokens.forEach((token) => {
       if (token.type !== "inline" || !token.children) {
         return;
@@ -75226,7 +75226,7 @@ let __tla = (async () => {
         }
         editInputValue.value.style.height = `${editInputValue.value.scrollHeight}px`;
       };
-      const markdownPostContent = computed(() => parseMarkdown(postContent.value, locationStore, !reply));
+      const markdownPostContent = computed(() => parseMarkdown(postContent.value, locationStore, reply, !reply));
       const reload = () => location.reload();
       return (_ctx, _cache) => {
         const _component_Post = resolveComponent("Post", true);
@@ -75349,7 +75349,7 @@ let __tla = (async () => {
                 edited.value || _ctx.post.edited_at ? (openBlock(), createElementBlock("span", _hoisted_17$2, "(edited)")) : createCommentVNode("", true)
               ], 2)) : createCommentVNode("", true)
             ]),
-            replyPost.value ? (openBlock(), createElementBlock("div", _hoisted_18, [
+            replyPost.value && !_ctx.reply ? (openBlock(), createElementBlock("div", _hoisted_18, [
               createVNode(_component_Post, {
                 post: replyPost.value,
                 reply: ""
