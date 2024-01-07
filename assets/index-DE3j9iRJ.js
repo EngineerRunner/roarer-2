@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-Fkd_QTt5.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-cl34z70c.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -75032,20 +75032,23 @@ let __tla = (async () => {
   const _hoisted_17$2 = {
     key: 0
   };
-  const _hoisted_18 = [
+  const _hoisted_18 = {
+    key: 0
+  };
+  const _hoisted_19 = [
     "value"
   ];
-  const _hoisted_19 = {
+  const _hoisted_20 = {
     class: "space-x-2"
   };
-  const _hoisted_20 = {
+  const _hoisted_21 = {
     type: "submit",
     class: "rounded-xl bg-slate-700 px-2 py-1"
   };
-  const _hoisted_21 = {
+  const _hoisted_22 = {
     key: 2
   };
-  const _hoisted_22 = [
+  const _hoisted_23 = [
     "innerHTML"
   ];
   const _sfc_main$9 = defineComponent({
@@ -75247,15 +75250,8 @@ let __tla = (async () => {
         }, [
           !isDeleted.value && !unref(relationshipStore).blockedUsers.has(username.value) ? (openBlock(), createElementBlock("div", {
             key: 0,
-            class: normalizeClass(`group flex rounded-xl bg-slate-800 ${_ctx.reply ? "gap-2" : "flex-col px-2 py-1"}`)
+            class: normalizeClass(`group flex rounded-xl bg-slate-800 ${_ctx.reply ? "gap-2 italic text-slate-400" : "flex-col px-2 py-1"}`)
           }, [
-            replyPost.value ? (openBlock(), createBlock(_component_Post, {
-              key: 0,
-              post: replyPost.value,
-              reply: ""
-            }, null, 8, [
-              "post"
-            ])) : createCommentVNode("", true),
             createBaseVNode("div", _hoisted_1$8, [
               _ctx.reply ? (openBlock(), createBlock(unref(IconArrowForward), {
                 key: 0,
@@ -75267,7 +75263,7 @@ let __tla = (async () => {
                 class: "font-bold",
                 onClick: _cache[1] || (_cache[1] = ($event) => goToUser(username.value))
               }, toDisplayString$1(username.value), 1)) : createCommentVNode("", true),
-              unref(onlineListStore).online.includes(username.value) ? (openBlock(), createElementBlock("span", _hoisted_2$6, [
+              unref(onlineListStore).online.includes(username.value) && !_ctx.reply ? (openBlock(), createElementBlock("span", _hoisted_2$6, [
                 createVNode(unref(IconCircleFilled), {
                   class: "h-2 w-2",
                   "aria-hidden": ""
@@ -75362,6 +75358,14 @@ let __tla = (async () => {
                 edited.value || _ctx.post.edited_at ? (openBlock(), createElementBlock("span", _hoisted_17$2, "(edited)")) : createCommentVNode("", true)
               ], 2)) : createCommentVNode("", true)
             ]),
+            replyPost.value ? (openBlock(), createElementBlock("div", _hoisted_18, [
+              createVNode(_component_Post, {
+                post: replyPost.value,
+                reply: ""
+              }, null, 8, [
+                "post"
+              ])
+            ])) : createCommentVNode("", true),
             editing.value ? (openBlock(), createElementBlock("form", {
               key: 1,
               onSubmit: edit
@@ -75375,20 +75379,20 @@ let __tla = (async () => {
                 ref: editInputValue,
                 onKeydown: editKeydown,
                 onInput: resizeTextarea
-              }, null, 40, _hoisted_18),
-              createBaseVNode("div", _hoisted_19, [
-                createBaseVNode("button", _hoisted_20, toDisplayString$1(unref(t)("editPost")), 1),
+              }, null, 40, _hoisted_19),
+              createBaseVNode("div", _hoisted_20, [
+                createBaseVNode("button", _hoisted_21, toDisplayString$1(unref(t)("editPost")), 1),
                 createBaseVNode("button", {
                   class: "rounded-xl bg-slate-700 px-2 py-1",
                   onClick: _cache[4] || (_cache[4] = ($event) => editing.value = false)
                 }, toDisplayString$1(unref(t)("cancelEditingPost")), 1)
               ])
-            ], 32)) : (openBlock(), createElementBlock("div", _hoisted_21, [
+            ], 32)) : (openBlock(), createElementBlock("div", _hoisted_22, [
               createBaseVNode("div", {
                 class: normalizeClass(`max-h-96 space-y-2 break-words [&_a]:text-sky-400 [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-slate-500 [&_blockquote]:pl-2 [&_blockquote]:italic [&_blockquote]:text-slate-400 [&_h1]:text-4xl [&_h1]:font-bold [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-2xl [&_h3]:font-bold [&_h4]:text-xl [&_h4]:font-bold [&_h5]:text-lg [&_h5]:font-bold [&_h6]:text-sm [&_h6]:font-bold [&_hr]:mx-8 [&_hr]:my-2 [&_hr]:border-slate-500 [&_img]:max-h-96 [&_li]:list-inside [&_ol_li]:list-decimal [&_td]:border-[1px] [&_td]:border-slate-500 [&_td]:px-2 [&_td]:py-1 [&_th]:border-[1px] [&_th]:border-slate-500 [&_th]:px-2 [&_th]:py-1 [&_ul_li]:list-disc ${isItalicUser.value ? "italic" : ""} ${_ctx.reply ? "line-clamp-1 overflow-hidden" : "overflow-y-auto"}`),
                 innerHTML: markdownPostContent.value,
                 ref: "postContentElement"
-              }, null, 10, _hoisted_22),
+              }, null, 10, _hoisted_23),
               postContent.value.endsWith("\u200C") && username.value === "mybearworld" && !unref(isBridged) && !_ctx.reply ? (openBlock(), createElementBlock("button", {
                 key: 0,
                 class: "mt-2 flex items-center gap-1 rounded-xl bg-slate-700 px-2 py-1",
