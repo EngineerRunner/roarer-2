@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-cl34z70c.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-K5SR_C1I.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -13991,7 +13991,7 @@ let __tla = (async () => {
   const _hoisted_7$5 = {
     class: "block"
   };
-  const _hoisted_8$5 = {
+  const _hoisted_8$4 = {
     class: "space-x-2"
   };
   const _hoisted_9$4 = [
@@ -14159,7 +14159,7 @@ let __tla = (async () => {
                     ]
                   ])
                 ]),
-                createBaseVNode("div", _hoisted_8$5, [
+                createBaseVNode("div", _hoisted_8$4, [
                   createBaseVNode("button", {
                     class: "rounded-xl bg-slate-700 px-2 py-1",
                     type: "submit",
@@ -14206,19 +14206,15 @@ let __tla = (async () => {
     class: "flex flex-wrap items-center gap-2"
   };
   const _hoisted_5$5 = {
-    href: "https://github.com/mybearworld/roarer",
-    class: "text-sky-400 underline"
-  };
-  const _hoisted_6$4 = {
     key: 0,
     class: "text-red-200"
   };
-  const _hoisted_7$4 = createBaseVNode("a", {
+  const _hoisted_6$4 = createBaseVNode("a", {
     href: "https://github.com/meower-media-co/Meower-Server/tree/main",
     class: "text-sky-400 underline",
     target: "_blank"
   }, "Meower Server", -1);
-  const _hoisted_8$4 = createBaseVNode("a", {
+  const _hoisted_7$4 = createBaseVNode("a", {
     href: "https://github.com/meower-media-co/Meower-Svelte/tree/master",
     class: "text-sky-400 underline",
     target: "_blank"
@@ -14268,16 +14264,11 @@ let __tla = (async () => {
               }, toDisplayString$1(unref(t)("routeSettings")), 1)
             ])
           ]),
-          createBaseVNode("p", null, [
-            createTextVNode(toDisplayString$1(unref(t)("developmentStatus.start")), 1),
-            createBaseVNode("a", _hoisted_5$5, toDisplayString$1(unref(t)("developmentStatus.githubRepositoryLink")), 1),
-            createTextVNode(toDisplayString$1(unref(t)("developmentStatus.end")), 1)
-          ]),
-          unref(isDevStore).isDev ? (openBlock(), createElementBlock("p", _hoisted_6$4, [
+          unref(isDevStore).isDev ? (openBlock(), createElementBlock("p", _hoisted_5$5, [
             createTextVNode(toDisplayString$1(unref(t)("inDevelopmentMode")) + " ", 1),
-            _hoisted_7$4,
+            _hoisted_6$4,
             createTextVNode(" - "),
-            _hoisted_8$4
+            _hoisted_7$4
           ])) : createCommentVNode("", true)
         ]);
       };
@@ -76799,11 +76790,6 @@ You will lose ownership of the group.`)) {
     routeUsers: "Users",
     routeSettings: "Settings",
     signOut: "Sign out",
-    developmentStatus: {
-      start: "Note: Roarer is currently very early in its development. Please do report bugs and/or suggest features on ",
-      githubRepositoryLink: "the Github repository",
-      end: "!"
-    },
     inDevelopmentMode: "You are currently in development mode.",
     loginHeader: "Log in to Roarer",
     loginUsername: "Username:",
@@ -76915,11 +76901,6 @@ You will lose ownership of the group.`)) {
     routeUsers: "Usuarios",
     routeSettings: "Ajustes",
     signOut: "Cerrar sesi\xF3n",
-    developmentStatus: {
-      start: "Nota: Roarer se encuentra actualmente en una etapa muy temprana de su desarrollo. Informe errores y/o sugiera funciones en ",
-      githubRepositoryLink: "el repositorio de GitHub",
-      end: "!"
-    },
     inDevelopmentMode: "Est\xE1s en modo desarrollo.",
     loginHeader: "Iniciar sesi\xF3n en Roarer",
     loginUsername: "Nombre de usuario:",
@@ -77031,11 +77012,6 @@ You will lose ownership of the group.`)) {
     routeUsers: "Nutzer",
     routeSettings: "Einstellungen",
     signOut: "Abmelden",
-    developmentStatus: {
-      start: "Wichtig: Roarer ist in einer sehr fr\xFChen Entwicklungsphase. Bitte melde Fehler oder schlage Features auf ",
-      githubRepositoryLink: "der Github-Repository",
-      end: " vor!"
-    },
     inDevelopmentMode: "Du bist momentan im Entwicklungsmodus.",
     loginHeader: "Bei Roarer anmelden",
     loginUsername: "Nutzername:",
@@ -77147,11 +77123,6 @@ You will lose ownership of the group.`)) {
     routeUsers: "Felhaszn\xE1l\xF3k",
     routeSettings: "Be\xE1ll\xEDt\xE1sok",
     signOut: "Kijelentkez\xE9s",
-    developmentStatus: {
-      start: "A Roarer \xE9ppen nagyon korai ponton van a fejleszt\xE9s\xE9ben, ha lenne \xF6tlete vagy hib\xE1t tal\xE1lna, k\xE9rem mindk\xE9pp t\xE1j\xE9koztasson r\xF3la ",
-      githubRepositoryLink: "Github-on",
-      end: "!"
-    },
     inDevelopmentMode: "\xC9ppen fejleszt\u0151i m\xF3dban van.",
     loginHeader: "Bejelentkez\xE9s a Roarer-be",
     loginUsername: "Felhaszn\xE1l\xF3n\xE9v:",
