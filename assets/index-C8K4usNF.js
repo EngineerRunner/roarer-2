@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-iNKRqaUa.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-OU2UoTxL.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -75025,20 +75025,24 @@ let __tla = (async () => {
   const _hoisted_18 = {
     key: 0
   };
-  const _hoisted_19 = [
+  const _hoisted_19 = {
+    key: 1,
+    class: "overflow-hidden"
+  };
+  const _hoisted_20 = [
     "value"
   ];
-  const _hoisted_20 = {
+  const _hoisted_21 = {
     class: "space-x-2"
   };
-  const _hoisted_21 = {
+  const _hoisted_22 = {
     type: "submit",
     class: "rounded-xl bg-slate-700 px-2 py-1"
   };
-  const _hoisted_22 = {
-    key: 2
+  const _hoisted_23 = {
+    key: 3
   };
-  const _hoisted_23 = [
+  const _hoisted_24 = [
     "innerHTML"
   ];
   const _sfc_main$9 = defineComponent({
@@ -75344,13 +75348,20 @@ let __tla = (async () => {
               ])) : createCommentVNode("", true),
               !_ctx.reply ? (openBlock(), createElementBlock("div", {
                 key: 8,
-                class: normalizeClass(`visible w-full text-sm italic text-slate-400 ${!isItalicUser.value ? "sm:hidden sm:w-auto group-hover:sm:inline-block" : ""}`)
+                class: normalizeClass(`visible w-full text-sm italic text-slate-400 ${!isItalicUser.value ? "hidden w-auto group-hover:sm:inline-block" : ""}`)
               }, [
                 createTextVNode(toDisplayString$1(unref(formatDate)(_ctx.post.t.e, unref(locale))) + " ", 1),
                 edited.value || _ctx.post.edited_at ? (openBlock(), createElementBlock("span", _hoisted_17$2, "(edited)")) : createCommentVNode("", true)
               ], 2)) : createCommentVNode("", true)
             ]),
-            replyPost.value && !_ctx.reply ? (openBlock(), createElementBlock("div", _hoisted_18, [
+            !_ctx.reply ? (openBlock(), createElementBlock("div", {
+              key: 0,
+              class: normalizeClass(`w-full text-sm italic text-slate-400 sm:hidden ${!isItalicUser.value ? "inline-block w-auto" : ""}`)
+            }, [
+              createTextVNode(toDisplayString$1(unref(formatDate)(_ctx.post.t.e, unref(locale))) + " ", 1),
+              edited.value || _ctx.post.edited_at ? (openBlock(), createElementBlock("span", _hoisted_18, "(edited)")) : createCommentVNode("", true)
+            ], 2)) : createCommentVNode("", true),
+            replyPost.value && !_ctx.reply ? (openBlock(), createElementBlock("div", _hoisted_19, [
               createVNode(_component_Post, {
                 post: replyPost.value,
                 reply: ""
@@ -75359,7 +75370,7 @@ let __tla = (async () => {
               ])
             ])) : createCommentVNode("", true),
             editing.value ? (openBlock(), createElementBlock("form", {
-              key: 1,
+              key: 2,
               onSubmit: edit
             }, [
               createBaseVNode("textarea", {
@@ -75371,20 +75382,20 @@ let __tla = (async () => {
                 ref: editInputValue,
                 onKeydown: editKeydown,
                 onInput: resizeTextarea
-              }, null, 40, _hoisted_19),
-              createBaseVNode("div", _hoisted_20, [
-                createBaseVNode("button", _hoisted_21, toDisplayString$1(unref(t)("editPost")), 1),
+              }, null, 40, _hoisted_20),
+              createBaseVNode("div", _hoisted_21, [
+                createBaseVNode("button", _hoisted_22, toDisplayString$1(unref(t)("editPost")), 1),
                 createBaseVNode("button", {
                   class: "rounded-xl bg-slate-700 px-2 py-1",
                   onClick: _cache[4] || (_cache[4] = ($event) => editing.value = false)
                 }, toDisplayString$1(unref(t)("cancelEditingPost")), 1)
               ])
-            ], 32)) : (openBlock(), createElementBlock("div", _hoisted_22, [
+            ], 32)) : (openBlock(), createElementBlock("div", _hoisted_23, [
               createBaseVNode("div", {
                 class: normalizeClass(`max-h-96 space-y-2 break-words [&_a]:text-sky-400 [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-slate-500 [&_blockquote]:pl-2 [&_blockquote]:italic [&_blockquote]:text-slate-400 [&_h1]:text-4xl [&_h1]:font-bold [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-2xl [&_h3]:font-bold [&_h4]:text-xl [&_h4]:font-bold [&_h5]:text-lg [&_h5]:font-bold [&_h6]:text-sm [&_h6]:font-bold [&_hr]:mx-8 [&_hr]:my-2 [&_hr]:border-slate-500 [&_img]:max-h-96 [&_li]:list-inside [&_ol_li]:list-decimal [&_td]:border-[1px] [&_td]:border-slate-500 [&_td]:px-2 [&_td]:py-1 [&_th]:border-[1px] [&_th]:border-slate-500 [&_th]:px-2 [&_th]:py-1 [&_ul_li]:list-disc ${isItalicUser.value ? "italic" : ""} ${_ctx.reply ? "line-clamp-1 overflow-hidden" : "overflow-y-auto"}`),
                 innerHTML: markdownPostContent.value,
                 ref: "postContentElement"
-              }, null, 10, _hoisted_23),
+              }, null, 10, _hoisted_24),
               postContent.value.endsWith("\u200C") && username.value === "mybearworld" && !unref(isBridged) && !_ctx.reply ? (openBlock(), createElementBlock("button", {
                 key: 0,
                 class: "mt-2 flex items-center gap-1 rounded-xl bg-slate-700 px-2 py-1",

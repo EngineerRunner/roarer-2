@@ -685,6 +685,9 @@ video {
 .contents {
   display: contents;
 }
+.hidden {
+  display: none;
+}
 .h-2 {
   height: 0.5rem;
 }
@@ -711,6 +714,9 @@ video {
 }
 .w-\[min\(100ch\2c 100\%\)\] {
   width: min(100ch,100%);
+}
+.w-auto {
+  width: auto;
 }
 .w-full {
   width: 100%;
@@ -934,10 +940,6 @@ video {
 
   .sm\:hidden {
     display: none;
-  }
-
-  .sm\:w-auto {
-    width: auto;
   }
 
   .group:hover .group-hover\:sm\:visible {
