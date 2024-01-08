@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-_5TYm8x2.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-Q9Z_6GLo.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -77302,7 +77302,7 @@ You will lose ownership of the group.`)) {
     alsoRevokeTokens: "sina wile ala wile pini e lon ale?",
     revokeTokensConfirm: "sina wile e ni, anu seme? lon ilo ale la sina kama lon.",
     revokeTokensFail: "mi ken ala pini e lon ale: {errmsg}",
-    deleteAccountConfirm: "sina wile e ni, anu seme? sina pali e ni la sina KEN ALA ante e ni. suno luka tu la sina li weka lon TENPO ALE.",
+    deleteAccountConfirm: "sina wile e ni, anu seme? sina pali e ni la sina KEN ALA ante e ni. suno luka tu la sina weka lon TENPO ALE.",
     deleteAccountPasswordPrompt: "seme li nimi len sina?",
     deleteAccountFail: "mi ken ala weka e sina: {err}",
     usersSectionMe: "mi",
