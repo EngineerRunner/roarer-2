@@ -1031,6 +1031,9 @@ video {
 .\[\&_img\]\:max-h-96 img {
   max-height: 24rem;
 }
+.\[\&_img\]\:align-top img {
+  vertical-align: top;
+}
 .\[\&_li\]\:list-inside li {
   list-style-position: inside;
 }
