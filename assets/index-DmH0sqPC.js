@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-Q9Z_6GLo.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-lSTBNfBs.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -75259,7 +75259,7 @@ let __tla = (async () => {
               })) : createCommentVNode("", true),
               !isItalicUser.value ? (openBlock(), createElementBlock("button", {
                 key: 1,
-                class: "font-bold",
+                class: "text-nowrap font-bold",
                 onClick: _cache[1] || (_cache[1] = ($event) => goToUser(username.value))
               }, toDisplayString$1(username.value), 1)) : createCommentVNode("", true),
               unref(onlineListStore).online.includes(username.value) && !_ctx.reply ? (openBlock(), createElementBlock("span", _hoisted_2$6, [
