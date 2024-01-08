@@ -1070,3 +1070,6 @@ video {
 .\[\&_ul_li\]\:list-disc ul li {
   list-style-type: disc;
 }
+.\[\&_video\]\:max-h-96 video {
+  max-height: 24rem;
+}
