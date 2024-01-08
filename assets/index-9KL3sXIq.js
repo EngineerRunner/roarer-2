@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-lSTBNfBs.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-xXmH8x1e.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -74881,7 +74881,12 @@ let __tla = (async () => {
     await Promise.all([
       ...postDocument.querySelectorAll("img")
     ].map(async (element) => {
-      const request = await fetch(element.src);
+      let request;
+      try {
+        request = await fetch(element.src);
+      } catch {
+        return;
+      }
       if (request.status !== 200) {
         return;
       }
