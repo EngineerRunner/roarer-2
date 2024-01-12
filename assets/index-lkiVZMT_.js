@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser--zfXIy1T.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-B3zafuOx.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -75974,6 +75974,7 @@ You will lose ownership of the group.`)) {
         }
         chats.value = response.autoget;
       });
+      const sortedChats = computed(() => chats.value.sort((a, b) => new Date(b.last_active * 1e3).getTime() - new Date(a.last_active * 1e3).getTime()));
       const chatNickname = ref("");
       const createChat = async (e) => {
         e == null ? void 0 : e.preventDefault();
@@ -76086,7 +76087,7 @@ You will lose ownership of the group.`)) {
               ]),
               createBaseVNode("button", _hoisted_3$2, toDisplayString$1(unref(t)("createChat")), 1)
             ], 32),
-            (openBlock(true), createElementBlock(Fragment, null, renderList(chats.value, (chat) => {
+            (openBlock(true), createElementBlock(Fragment, null, renderList(sortedChats.value, (chat) => {
               return openBlock(), createBlock(_sfc_main$4, {
                 chat,
                 onOpen: open,
