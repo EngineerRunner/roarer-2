@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-zrVv1REo.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-x1ESYwFp.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -76361,7 +76361,7 @@ You will lose ownership of the group.`)) {
     class: "text-lg font-bold"
   };
   const _hoisted_12$1 = {
-    href: "https://github.com/mybearworld/roarer/graphs/contributors",
+    href: "https://github.com/mybearworld/roarer?tab=readme-ov-file#contributors",
     class: "text-sky-400 underline"
   };
   const _sfc_main$2 = defineComponent({
