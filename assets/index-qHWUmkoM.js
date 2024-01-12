@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-1-flLJ8d.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser--zfXIy1T.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -13985,7 +13985,7 @@ let __tla = (async () => {
   const _hoisted_5$6 = {
     class: "text-xl"
   };
-  const _hoisted_6$5 = {
+  const _hoisted_6$6 = {
     class: "block"
   };
   const _hoisted_7$5 = {
@@ -14133,7 +14133,7 @@ let __tla = (async () => {
                   createBaseVNode("strong", _hoisted_5$6, toDisplayString$1(unref(t)("loginHeader")), 1),
                   createVNode(_sfc_main$f)
                 ]),
-                createBaseVNode("label", _hoisted_6$5, [
+                createBaseVNode("label", _hoisted_6$6, [
                   createTextVNode(toDisplayString$1(unref(t)("loginUsername")) + " ", 1),
                   withDirectives(createBaseVNode("input", {
                     class: "rounded-lg bg-slate-700 px-1",
@@ -14209,7 +14209,7 @@ let __tla = (async () => {
     key: 0,
     class: "text-red-200"
   };
-  const _hoisted_6$4 = createBaseVNode("a", {
+  const _hoisted_6$5 = createBaseVNode("a", {
     href: "https://github.com/meower-media-co/Meower-Server/tree/main",
     class: "text-sky-400 underline",
     target: "_blank"
@@ -14266,7 +14266,7 @@ let __tla = (async () => {
           ]),
           unref(isDevStore).isDev ? (openBlock(), createElementBlock("p", _hoisted_5$5, [
             createTextVNode(toDisplayString$1(unref(t)("inDevelopmentMode")) + " ", 1),
-            _hoisted_6$4,
+            _hoisted_6$5,
             createTextVNode(" - "),
             _hoisted_7$4
           ])) : createCommentVNode("", true)
@@ -74992,7 +74992,7 @@ let __tla = (async () => {
   const _hoisted_5$4 = {
     class: "sr-only"
   };
-  const _hoisted_6$3 = [
+  const _hoisted_6$4 = [
     "title"
   ];
   const _hoisted_7$3 = {
@@ -75292,7 +75292,7 @@ let __tla = (async () => {
                   class: "inline-block w-5"
                 }),
                 createBaseVNode("span", _hoisted_7$3, toDisplayString$1(unref(t)("webhookBridgePost")), 1)
-              ], 8, _hoisted_6$3)) : createCommentVNode("", true),
+              ], 8, _hoisted_6$4)) : createCommentVNode("", true),
               unref(isSplash) ? (openBlock(), createElementBlock("span", {
                 key: 5,
                 title: unref(t)("splashBridgePost")
@@ -75617,7 +75617,7 @@ let __tla = (async () => {
   const _hoisted_5$3 = {
     class: "text-lg font-bold"
   };
-  const _hoisted_6$2 = {
+  const _hoisted_6$3 = {
     type: "submit",
     class: "rounded-xl bg-slate-800 px-2 py-1"
   };
@@ -75787,7 +75787,7 @@ You will lose ownership of the group.`)) {
                   newChatName.value
                 ]
               ]),
-              createBaseVNode("button", _hoisted_6$2, toDisplayString$1(unref(t)("chatRename")), 1)
+              createBaseVNode("button", _hoisted_6$3, toDisplayString$1(unref(t)("chatRename")), 1)
             ], 32),
             createBaseVNode("form", {
               class: "flex gap-2",
@@ -75862,6 +75862,9 @@ You will lose ownership of the group.`)) {
     class: "sr-only"
   }, "Members:", -1);
   const _hoisted_5$2 = {
+    class: "line-clamp-1"
+  };
+  const _hoisted_6$2 = {
     class: "sr-only"
   };
   const _sfc_main$4 = defineComponent({
@@ -75893,7 +75896,7 @@ You will lose ownership of the group.`)) {
                   "aria-hidden": ""
                 }),
                 _hoisted_4$2,
-                createTextVNode(" " + toDisplayString$1(_ctx.chat.members.join(", ")), 1)
+                createBaseVNode("span", _hoisted_5$2, toDisplayString$1(_ctx.chat.members.join(", ")), 1)
               ], 64)) : (openBlock(), createElementBlock(Fragment, {
                 key: 1
               }, [
@@ -75917,7 +75920,7 @@ You will lose ownership of the group.`)) {
               key: 1,
               "aria-hidden": ""
             })),
-            createBaseVNode("span", _hoisted_5$2, toDisplayString$1(_ctx.chat.owner === unref(loginStatusStore).username ? unref(t)("chatSettings") : unref(t)("chatPeople")), 1)
+            createBaseVNode("span", _hoisted_6$2, toDisplayString$1(_ctx.chat.owner === unref(loginStatusStore).username ? unref(t)("chatSettings") : unref(t)("chatPeople")), 1)
           ])) : createCommentVNode("", true)
         ]);
       };
