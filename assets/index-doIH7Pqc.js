@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-g_TipYmq.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-hLt5cKMf.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -75171,7 +75171,9 @@ let __tla = (async () => {
           })
         });
         if (response.status !== 200) {
-          alert(`Unexpected ${response.status} when editing`);
+          alert(t("editPostFail", {
+            status: response.status
+          }));
         }
       };
       const editKeydown = (e) => {
@@ -75465,7 +75467,9 @@ let __tla = (async () => {
           schema: postsSchema
         });
         if ("status" in response) {
-          alert("Failed to get posts.");
+          alert(t("getPostsFail", {
+            status: response.status
+          }));
           return;
         }
         posts.value = response.autoget;
@@ -75499,7 +75503,9 @@ let __tla = (async () => {
           schema: postsSchema
         });
         if ("status" in response) {
-          alert(`Couldn't load more: ${response.status}`);
+          alert(t("loadMoreFail", {
+            status: response.status
+          }));
           return;
         }
         const newPosts = response.autoget.slice(postsToRemove);
@@ -76929,7 +76935,10 @@ You will lose ownership of the group.`)) {
       start: "Do you speak one of these languages, or even one that isn't present here yet? If you want to see Roarer in your language, you can ",
       githubLink: "translate it on GitHub",
       end: "!"
-    }
+    },
+    editPostFail: "Couldn't edit post: {status}",
+    loadMoreFail: "Couldnt load more: {status}",
+    getPostsFail: "Couldn't get posts: {status}"
   };
   const es = {
     languageName: "Espa\xF1ol",
