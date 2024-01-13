@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-pXPakumV.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-g_TipYmq.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -76769,7 +76769,7 @@ You will lose ownership of the group.`)) {
               })), 1),
               _hoisted_16,
               createBaseVNode("div", _hoisted_17, [
-                !isBlocked.value ? (openBlock(), createElementBlock("button", {
+                !isBlocked.value && unref(loginStatusStore).username !== userProfile.value._id ? (openBlock(), createElementBlock("button", {
                   key: 0,
                   type: "button",
                   class: "rounded-xl bg-slate-800 px-2 py-1",
