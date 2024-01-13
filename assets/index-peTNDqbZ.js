@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-OoGc-k_H.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-Ppk7bv75.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -75243,7 +75243,8 @@ let __tla = (async () => {
         if (!postContentElement.value || !markdownPostContent.value) {
           return;
         }
-        postContentElement.value.append(...markdownPostContent.value.children ?? []);
+        postContentElement.value.innerHTML = "";
+        postContentElement.value.append(...markdownPostContent.value.childNodes ?? []);
       });
       const reload = () => location.reload();
       return (_ctx, _cache) => {
