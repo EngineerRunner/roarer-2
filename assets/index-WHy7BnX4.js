@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-vk6slVcB.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-4VItkHk7.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -77385,7 +77385,10 @@ You will lose ownership of the group.`)) {
       start: "sina ken ala ken toki e toki ni anu toki pi lon ala? sina wile lukin e ilo Lole lon toki sina la sina ken ",
       githubLink: "toki ante lon ilo Kita",
       end: "!"
-    }
+    },
+    editPostFail: "toki ken ala ante: {status}",
+    loadMoreFail: "toki ante ken ala lon: {status}",
+    getPostsFail: "mi ken ala pana e toki: {status}"
   };
   const languages = {
     en,
