@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-hLt5cKMf.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-vk6slVcB.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -77160,7 +77160,10 @@ You will lose ownership of the group.`)) {
       start: "Sprichst du eine dieser Sprachen, oder sogar eine, die hier noch nicht verf\xFCgbar ist? Wenn du Roarer in deiner Sprache sehen willst, kannst du es ",
       githubLink: "auf GitHub \xFCbersetzen",
       end: "!"
-    }
+    },
+    editPostFail: "Post konnte nicht bearbeitet werden: {status}",
+    loadMoreFail: "Mehr Posts konnten nicht geladen werden: {status}",
+    getPostsFail: "Posts konnten nicht erhalten werden: {status}"
   };
   const hu = {
     languageName: "Magyar",
