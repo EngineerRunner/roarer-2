@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-x1ESYwFp.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-pXPakumV.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -13976,7 +13976,7 @@ let __tla = (async () => {
   const _hoisted_2$a = {
     class: "absolute left-0 top-0 flex h-screen w-screen items-center justify-center"
   };
-  const _hoisted_3$9 = {
+  const _hoisted_3$a = {
     class: "space-y-4"
   };
   const _hoisted_4$6 = {
@@ -14128,7 +14128,7 @@ let __tla = (async () => {
               class: "rounded-xl bg-slate-900 px-5 py-4",
               onSubmit: loginEvent
             }, [
-              createBaseVNode("div", _hoisted_3$9, [
+              createBaseVNode("div", _hoisted_3$a, [
                 createBaseVNode("div", _hoisted_4$6, [
                   createBaseVNode("strong", _hoisted_5$6, toDisplayString$1(unref(t)("loginHeader")), 1),
                   createVNode(_sfc_main$f)
@@ -14199,7 +14199,7 @@ let __tla = (async () => {
   const _hoisted_2$9 = {
     class: "flex flex-wrap gap-x-4"
   };
-  const _hoisted_3$8 = {
+  const _hoisted_3$9 = {
     class: "text-3xl font-bold"
   };
   const _hoisted_4$5 = {
@@ -14238,7 +14238,7 @@ let __tla = (async () => {
         return openBlock(), createElementBlock("div", null, [
           createBaseVNode("div", _hoisted_1$c, [
             createBaseVNode("div", _hoisted_2$9, [
-              createBaseVNode("h1", _hoisted_3$8, toDisplayString$1(unref(t)("roarer")) + "\xA0-\xA0" + toDisplayString$1(_ctx.title), 1),
+              createBaseVNode("h1", _hoisted_3$9, toDisplayString$1(unref(t)("roarer")) + "\xA0-\xA0" + toDisplayString$1(_ctx.title), 1),
               createVNode(_sfc_main$e)
             ]),
             createBaseVNode("div", _hoisted_4$5, [
@@ -14321,7 +14321,7 @@ let __tla = (async () => {
     type: "submit",
     class: "text-nowrap rounded-xl bg-slate-800 px-2 py-1"
   };
-  const _hoisted_3$7 = {
+  const _hoisted_3$8 = {
     key: 0
   };
   const _sfc_main$c = defineComponent({
@@ -14440,7 +14440,7 @@ let __tla = (async () => {
             ]),
             createBaseVNode("button", _hoisted_2$8, toDisplayString$1(_ctx.$t("enterPostSend")), 1)
           ], 32),
-          errorMessage.value ? (openBlock(), createElementBlock("p", _hoisted_3$7, toDisplayString$1(errorMessage.value), 1)) : createCommentVNode("", true)
+          errorMessage.value ? (openBlock(), createElementBlock("p", _hoisted_3$8, toDisplayString$1(errorMessage.value), 1)) : createCommentVNode("", true)
         ], 64);
       };
     }
@@ -15008,7 +15008,7 @@ let __tla = (async () => {
   const _hoisted_2$7 = {
     class: "sr-only"
   };
-  const _hoisted_3$6 = {
+  const _hoisted_3$7 = {
     key: 1,
     class: "italic text-slate-400"
   };
@@ -15059,7 +15059,7 @@ let __tla = (async () => {
             createTextVNode(" " + toDisplayString$1([
               ...shownTypingUsers.value.values()
             ].join(", ")), 1)
-          ])) : (openBlock(), createElementBlock("span", _hoisted_3$6, [
+          ])) : (openBlock(), createElementBlock("span", _hoisted_3$7, [
             createVNode(unref(IconKeyboardOff), {
               class: "inline-block",
               "aria-hidden": ""
@@ -74983,7 +74983,7 @@ let __tla = (async () => {
     key: 2,
     class: "inline-block text-green-400"
   };
-  const _hoisted_3$5 = createBaseVNode("span", {
+  const _hoisted_3$6 = createBaseVNode("span", {
     class: "sr-only"
   }, "Online", -1);
   const _hoisted_4$4 = [
@@ -75272,7 +75272,7 @@ let __tla = (async () => {
                   class: "h-2 w-2",
                   "aria-hidden": ""
                 }),
-                _hoisted_3$5
+                _hoisted_3$6
               ])) : createCommentVNode("", true),
               _ctx.post.u === "Discord" ? (openBlock(), createElementBlock("span", {
                 key: 3,
@@ -75423,9 +75423,13 @@ let __tla = (async () => {
   });
   const _hoisted_1$7 = {
     key: 0,
+    class: "flex items-center gap-2"
+  };
+  const _hoisted_2$5 = {
+    key: 0,
     class: "text-lg font-bold"
   };
-  const _hoisted_2$5 = [
+  const _hoisted_3$5 = [
     "disabled"
   ];
   const POSTS_PER_REQUESTS = 25;
@@ -75437,8 +75441,12 @@ let __tla = (async () => {
         type: Boolean
       }
     },
-    setup(__props) {
+    emits: [
+      "back"
+    ],
+    setup(__props, { emit: __emit }) {
       const { chat, inbox } = __props;
+      const emit2 = __emit;
       const cloudlinkStore = useCloudlinkStore();
       const loginStatusStore = useLoginStatusStore();
       const { t } = useI18n();
@@ -75503,7 +75511,13 @@ let __tla = (async () => {
       };
       return (_ctx, _cache) => {
         return openBlock(), createElementBlock(Fragment, null, [
-          _ctx.chat ? (openBlock(), createElementBlock("h2", _hoisted_1$7, toDisplayString$1(_ctx.chat.nickname), 1)) : createCommentVNode("", true),
+          _ctx.chat ? (openBlock(), createElementBlock("div", _hoisted_1$7, [
+            _ctx.chat ? (openBlock(), createElementBlock("h2", _hoisted_2$5, toDisplayString$1(_ctx.chat.nickname), 1)) : createCommentVNode("", true),
+            createBaseVNode("button", {
+              class: "text-sky-400 underline",
+              onClick: _cache[0] || (_cache[0] = ($event) => emit2("back"))
+            }, toDisplayString$1(unref(t)("back")), 1)
+          ])) : createCommentVNode("", true),
           !_ctx.inbox ? (openBlock(), createBlock(_sfc_main$a, {
             key: 1,
             chat: _ctx.chat
@@ -75531,7 +75545,7 @@ let __tla = (async () => {
               key: post.post_id,
               inbox: _ctx.inbox,
               onReply: (_a2 = enterPost.value) == null ? void 0 : _a2.reply,
-              onDelete: _cache[0] || (_cache[0] = ($event) => newPostsAmount.value--)
+              onDelete: _cache[1] || (_cache[1] = ($event) => newPostsAmount.value--)
             }, null, 8, [
               "post",
               "inbox",
@@ -75544,7 +75558,7 @@ let __tla = (async () => {
             class: "w-full rounded-xl bg-slate-800 py-1",
             disabled: loadingMore.value,
             onClick: loadMore
-          }, toDisplayString$1(loadingMore.value ? unref(t)("loadingMore") : unref(t)("loadMore")), 9, _hoisted_2$5)) : createCommentVNode("", true)
+          }, toDisplayString$1(loadingMore.value ? unref(t)("loadingMore") : unref(t)("loadMore")), 9, _hoisted_3$5)) : createCommentVNode("", true)
         ], 64);
       };
     }
@@ -76098,13 +76112,14 @@ You will lose ownership of the group.`)) {
             }), 256))
           ], 64)) : section.value === "main" ? (openBlock(), createBlock(_sfc_main$8, {
             key: 1,
-            chat: openGroupchat.value
+            chat: openGroupchat.value,
+            onBack: _cache[1] || (_cache[1] = ($event) => openGroupchat.value = null)
           }, null, 8, [
             "chat"
           ])) : (openBlock(), createBlock(_sfc_main$5, {
             key: 2,
             chat: openGroupchat.value,
-            onBack: _cache[1] || (_cache[1] = ($event) => openGroupchat.value = null)
+            onBack: _cache[2] || (_cache[2] = ($event) => openGroupchat.value = null)
           }, null, 8, [
             "chat"
           ]))
