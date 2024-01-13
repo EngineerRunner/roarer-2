@@ -13767,7 +13767,7 @@ let __tla = (async () => {
   if (globalThis.WebSocket) {
     ws = WebSocket;
   } else {
-    ws = (await __vitePreload(() => import("./browser-4VItkHk7.js").then(async (m) => {
+    ws = (await __vitePreload(() => import("./browser-OoGc-k_H.js").then(async (m) => {
       await m.__tla;
       return m;
     }).then((n) => n.b), true ? __vite__mapDeps([]) : void 0)).default;
@@ -74863,7 +74863,14 @@ let __tla = (async () => {
         img.classList.add("inline-block");
       }
     });
-    postDocument.querySelectorAll("a").forEach((element) => {
+    const sanitizedHTML = postDocument.body.innerHTML;
+    const linkifiedHTML = linkifyHtml(sanitizedHTML, {
+      formatHref: {
+        mention: (href) => `https://app.meower.org/users${href}`
+      }
+    });
+    const linkifiedDocument = domParser.parseFromString(linkifiedHTML, "text/html");
+    linkifiedDocument.querySelectorAll("a").forEach((element) => {
       var _a2;
       const text2 = element.textContent;
       if (!text2 || !((_a2 = element.textContent) == null ? void 0 : _a2.startsWith("@"))) {
@@ -74879,7 +74886,7 @@ let __tla = (async () => {
       });
     });
     await Promise.all([
-      ...postDocument.querySelectorAll("img")
+      ...linkifiedDocument.querySelectorAll("img")
     ].map(async (element) => {
       let request;
       try {
@@ -74901,13 +74908,7 @@ let __tla = (async () => {
       newElement.controls = true;
       element.replaceWith(newElement);
     }));
-    const sanitizedHTML = postDocument.body.innerHTML;
-    const linkifiedHTML = linkifyHtml(sanitizedHTML, {
-      formatHref: {
-        mention: (href) => `https://app.meower.org/users${href}`
-      }
-    });
-    return linkifiedHTML;
+    return linkifiedDocument.body;
   };
   const toHTML = (md, inline2) => {
     const tokens = inline2 ? markdown.parseInline(md, {}) : markdown.parse(md, {});
@@ -75049,9 +75050,6 @@ let __tla = (async () => {
   const _hoisted_23 = {
     key: 3
   };
-  const _hoisted_24 = [
-    "innerHTML"
-  ];
   const _sfc_main$9 = defineComponent({
     __name: "Post",
     props: {
@@ -75238,8 +75236,15 @@ let __tla = (async () => {
         }
         editInputValue.value.style.height = `${editInputValue.value.scrollHeight}px`;
       };
-      const markdownPostContent = ref("");
+      const markdownPostContent = ref(null);
+      const postContentElement = ref(null);
       effect(async () => markdownPostContent.value = await parseMarkdown(postContent.value, locationStore, reply, !reply));
+      effect(() => {
+        if (!postContentElement.value || !markdownPostContent.value) {
+          return;
+        }
+        postContentElement.value.append(...markdownPostContent.value.children ?? []);
+      });
       const reload = () => location.reload();
       return (_ctx, _cache) => {
         const _component_Post = resolveComponent("Post", true);
@@ -75403,9 +75408,9 @@ let __tla = (async () => {
             ], 32)) : (openBlock(), createElementBlock("div", _hoisted_23, [
               createBaseVNode("div", {
                 class: normalizeClass(`max-h-96 space-y-2 break-words [&_a]:text-sky-400 [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-slate-500 [&_blockquote]:pl-2 [&_blockquote]:italic [&_blockquote]:text-slate-400 [&_h1]:text-4xl [&_h1]:font-bold [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:text-2xl [&_h3]:font-bold [&_h4]:text-xl [&_h4]:font-bold [&_h5]:text-lg [&_h5]:font-bold [&_h6]:text-sm [&_h6]:font-bold [&_hr]:mx-8 [&_hr]:my-2 [&_hr]:border-slate-500 [&_img]:max-h-96 [&_img]:align-top [&_li]:list-inside [&_ol_li]:list-decimal [&_td]:border-[1px] [&_td]:border-slate-500 [&_td]:px-2 [&_td]:py-1 [&_th]:border-[1px] [&_th]:border-slate-500 [&_th]:px-2 [&_th]:py-1 [&_ul_li]:list-disc [&_video]:max-h-96 ${isItalicUser.value ? "italic" : ""} ${_ctx.reply ? "line-clamp-1 overflow-hidden" : "overflow-y-auto"}`),
-                innerHTML: markdownPostContent.value,
-                ref: "postContentElement"
-              }, null, 10, _hoisted_24),
+                ref_key: "postContentElement",
+                ref: postContentElement
+              }, null, 2),
               postContent.value.endsWith("\u200C") && username.value === "mybearworld" && !unref(isBridged) && !_ctx.reply ? (openBlock(), createElementBlock("button", {
                 key: 0,
                 class: "mt-2 flex items-center gap-1 rounded-xl bg-slate-700 px-2 py-1",
