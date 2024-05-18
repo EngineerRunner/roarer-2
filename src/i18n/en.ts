@@ -3,7 +3,7 @@ import { escape } from "./helpers";
 
 export const en = {
   languageName: "English",
-  roarer: "Roarer",
+  roarer: "Roarer 2: Electric Boogaloo",
   routeHome: "Home",
   routeInbox: "Inbox",
   routeGroups: "Groups",
@@ -11,7 +11,7 @@ export const en = {
   routeSettings: "Settings",
   signOut: "Sign out",
   inDevelopmentMode: "You are currently in development mode.",
-  loginHeader: "Log in to Roarer",
+  loginHeader: "Log in to Roarer 2",
   loginUsername: "Username:",
   loginPassword: "Password:",
   loginSubmit: "Log in",
@@ -116,7 +116,7 @@ export const en = {
   myAccount: "My account",
   languageContributing: {
     start:
-      "Do you speak one of these languages, or even one that isn't present here yet? If you want to see Roarer in your language, you can ",
+      "Do you speak one of these languages, or even one that isn't present here yet? If you want to see Roarer 2 in your language, you can ",
     githubLink: "translate it on GitHub",
     end: "!",
   },
@@ -208,9 +208,9 @@ export const en = {
   loadingPost: "Loading post...",
   backToHome: "Back to home",
   logIn: "Sign in",
-  loginRequiredHeader: "Log in to use social features of Roarer",
+  loginRequiredHeader: "Log in to use social features of Roarer 2: Electric Boogaloo",
   loginRequiredExplanation:
-    "You can look around on Meower and use Roarer without logging in, but in order to use most social features, you'll have to log in.",
+    "You can look around on Meower and use Roarer 2 without logging in, but in order to use most social features, you'll have to log in.",
   loginRequiredCta:
     "If you want to create an account, you can do that below. This will create an account on Meower. If you already have an account on Meower, you don't need to do that - just log in with your preexisting account.",
   loginRequiredBack: {
@@ -218,7 +218,7 @@ export const en = {
     link: "go back to home",
     end: ". You'll always be able to log in via the link at the top of the page.",
   },
-  themeColorScheme: "Color scheme",
+  themeColorScheme: "Colour scheme",
   themeColorSchemeDark: "Dark",
   themeColorSchemeLight: "Light",
   emojiPickerTabEmoji: "Emoji",
@@ -258,7 +258,7 @@ export const en = {
   usersMePfpColor: "Background color of custom profile picture:",
   usersMePfpColorNo: "None",
   externalSite:
-    "Are you sure you want to leave Roarer and open {link}? It'll be opened in a new tab.",
+    "Are you sure you want to leave Roarer 2: Electric Boogaloo and open {link}? It'll be opened in a new tab.",
   orSignUp: "...or sign up.",
   orLogIn: "...or log in.",
   loginConfirmPassword: "Confirm password",
@@ -284,20 +284,20 @@ export const en = {
     end: ".",
   },
   syntaxExtensions:
-    "However, both Meower and Roarer add some features to the syntax. All Roarer-specific Markdown will still look okay on other clients, so don't worry about using them.",
+    "However, both Meower and Roarer add some features to the syntax. All Roarer 2-specific Markdown will still look okay on other clients, so don't worry about using them.",
   syntaxAttachments: "Attachments",
   syntaxAttachmentsDescription:
-    'You can write "[Image name: Image link]" to add attachments to your posts. No matter where you put them, they will automatically be put at the end of a post. This is a Meower feature that Roarer adopted. You can still use regular Markdown images using the "![Image name](Image link)" syntax if you prefer. Images have to be hosted on a whitelisted image host.',
+    'You can write "[Image name: Image link]" to add attachments to your posts. No matter where you put them, they will automatically be put at the end of a post. This is a Meower feature that Roarer 2 adopted. You can still use regular Markdown images using the "![Image name](Image link)" syntax if you prefer. With default settings, images have to be hosted on a whitelisted image host.',
   syntaxImageHosts: "Image hosts",
   syntaxSyntaxHighlighting: "Syntax highlighting",
   syntaxSyntaxHighlightingDescription:
-    'Roarer supports syntax highlighting for code blocks, while Meower Svelte and most other clients don\'t. For users on those clients, the code block will simply appear unhighlighted. Roarer also supports adding syntax highlighting to inline code. To use this, you can write "(languageName) code". Users not on Roarer will see the language name in brackets.',
+    'Roarer 2 supports syntax highlighting for code blocks, while Meower Svelte and most other clients don\'t. For users on those clients, the code block will simply appear unhighlighted. Roarer 2 also supports adding syntax highlighting to inline code. To use this, you can write "(languageName) code". Users not on Roarer 2, or other compatible clients, will see the language name in brackets.',
   syntaxScratchBlocks: "Scratch blocks",
   syntaxScratchBlocksDescription: {
     start:
       'You can use the special "scratch" language on code blocks to render Scratch blocks using the ',
     link: "scratchblocks",
-    end: ' syntax. You can specify the version of Scratch to use by specifying "scratch2" or "scratch3", otherwise the user\'s preference will be used. People not using Roarer will see the scratchblocks syntax instead.',
+    end: ' syntax. You can specify the version of Scratch to use by specifying "scratch2" or "scratch3", otherwise the user\'s preference will be used. People not using Roarer 2, or another compatible client, will see the scratchblocks syntax instead.',
   },
   settingConfirmExternalLinks: "Confirm before opening external links.",
   hi: "Hello there! :)",
@@ -313,7 +313,7 @@ export const en = {
   theme_lion: "Lion",
   theme_olive: "Olive",
   roarerGc: {
-    introduction: "Roarer has a group chat!",
+    introduction: "Roarer 2 has a group chat!",
     gcBot: "Send a message in home to join.",
     dm: "DM me to join.",
   },
