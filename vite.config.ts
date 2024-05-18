@@ -12,5 +12,5 @@ export default defineConfig({
     }),
     topLevelAwait(),
   ],
-  base: "/roarer",
+  base: "/roarer-2",
 });
