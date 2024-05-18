@@ -1,4 +1,4 @@
-# Roarer
+# Roarer 2: Electric Boogaloo
 
 A simple mobile-friendly Meower client.
 
@@ -10,6 +10,7 @@ A simple mobile-friendly Meower client.
 <table>
   <tbody>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/EngineerRunner"><img src="https://avatars.githubusercontent.com/u/123766662?v=4?s=100" width="100px;" alt="EngineerRunner"/><br /><sub><b>EngineerRunner</b></sub></a><br /><a href="#infra-EngineerRunner" title="nothing">🤡</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mybearworld"><img src="https://avatars.githubusercontent.com/u/130385691?v=4?s=100" width="100px;" alt="mybearworld"/><br /><sub><b>mybearworld</b></sub></a><br /><a href="#infra-mybearworld" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#code-mybearworld" title="Code">💻</a> <a href="#bug-mybearworld" title="Bug reports">🐛</a> <a href="#translation-mybearworld" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/OneShot-Niko"><img src="https://avatars.githubusercontent.com/u/150537842?v=4?s=100" width="100px;" alt="Chris (Niko/Zy!)"/><br /><sub><b>Chris (Niko/Zy!)</b></sub></a><br /><a href="#translation-OneShot-Niko" title="Translation">🌍</a> <a href="#ideas-OneShot-Niko" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://notfenixio.github.io"><img src="https://avatars.githubusercontent.com/u/103071021?v=4?s=100" width="100px;" alt="notfenixio"/><br /><sub><b>notfenixio</b></sub></a><br /><a href="#translation-NotFenixio" title="Translation">🌍</a> <a href="#ideas-NotFenixio" title="Ideas, Planning, & Feedback">🤔</a> <a href="#bug-NotFenixio" title="Bug reports">🐛</a></td>
