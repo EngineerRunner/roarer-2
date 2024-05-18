@@ -133,14 +133,14 @@ cloudlinkStore.lookFor(
       v-if="
         chatsLoaded &&
         !chats.some(
-          (chat) => chat._id === '7d48d687-ab68-4fe1-96a1-4aacbff36a12',
+          (chat) => chat._id === 'bad46026-0fde-451b-9b7d-24f98b336788',
         )
       "
     >
       {{ t("roarerGc.introduction") }}
       <RouterLink
         class="text-link underline"
-        to="/home?post=@gc%20join%207d48d687-ab68-4fe1-96a1-4aacbff36a12"
+        to="/home?post=@gc%20join%@bad46026-0fde-451b-9b7d-24f98b336788"
         v-if="onlineListStore.online.includes('gc')"
       >
         {{ t("roarerGc.gcBot") }}
