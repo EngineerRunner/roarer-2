@@ -140,7 +140,7 @@ cloudlinkStore.lookFor(
       {{ t("roarerGc.introduction") }}
       <RouterLink
         class="text-link underline"
-        to="/home?post=@gc%20join%@bad46026-0fde-451b-9b7d-24f98b336788"
+        to="/home?post=@gc join bad46026-0fde-451b-9b7d-24f98b336788"
         v-if="onlineListStore.online.includes('gc')"
       >
         {{ t("roarerGc.gcBot") }}
