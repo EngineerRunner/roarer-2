@@ -75,23 +75,23 @@ export type Emoji = (typeof discordEmoji)[number];
 
 export const discordStickers = [
   {
-    url: "https://i.ibb.co/tYw2wy5/toasty.png",
+    url: "https://uploads.meower.org/attachments/ayCczbR2YbdAU5tm0hc1PwEa/toasty.png",
     name: "toasty",
   },
   {
-    url: "https://i.ibb.co/LxWpX0H/holy.png",
+    url: "https://uploads.meower.org/attachments/JpFAWNuQZt2v8bMrSYIEWadd/holy.png",
     name: "holy",
   },
   {
-    url: "https://i.ibb.co/JqbvChz/wagoogus.png",
+    url: "https://uploads.meower.org/attachments/yizn1BdxYL863TqW8PxNK4Kt/wagoogus.png",
     name: "wagoogus",
   },
   {
-    url: "https://i.ibb.co/Bs13n70/toasty-stare.png",
+    url: "https://uploads.meower.org/attachments/r1XZXoBEGILa1b9XzeyRTkE2/toasty-stare.png",
     name: "toasty stare",
   },
   {
-    url: "https://i.ibb.co/34SWHyN/screwyou.png",
+    url: "https://uploads.meower.org/attachments/gGXEFRsbVcOwa72V6qmN8TwP/screwyou.png",
     name: "screwyou",
   },
 ] satisfies DiscordSticker[];
