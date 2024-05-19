@@ -413,7 +413,7 @@ addEventListener("keydown", (e) => {
     <p>
       {{ t("languageContributing.start")
       }}<a
-        href="https://github.com/mybearworld/roarer/tree/main/src/i18n"
+        href="https://github.com/engineerrunner/roarer-2/tree/main/src/i18n"
         class="text-link underline"
         >{{ t("languageContributing.githubLink") }}</a
       >{{ t("languageContributing.end") }}
@@ -422,7 +422,7 @@ addEventListener("keydown", (e) => {
     <p>
       {{ t("contributorsThanks.start")
       }}<a
-        href="https://github.com/mybearworld/roarer?tab=readme-ov-file#contributors"
+        href="https://github.com/EngineerRunner/roarer-2?tab=readme-ov-file#contributors"
         class="text-link underline"
         >{{ t("contributorsThanks.contributorsLink") }}</a
       >{{ t("contributorsThanks.end") }}
