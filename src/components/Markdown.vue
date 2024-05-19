@@ -174,7 +174,7 @@ effect(() => {
       (img.dataset.original && !img.dataset.original.startsWith("<"))
     ) {
       const clonedImg = img.cloneNode();
-      element.append(clonedImg);
+      virtualDocument.body.append(clonedImg);
       img.remove();
     } else {
       img.classList.add("inline-block");
