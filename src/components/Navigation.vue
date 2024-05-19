@@ -29,7 +29,7 @@ const settingsStore = useSettingsStore();
     <div class="mb-2 flex flex-col items-center gap-1">
       <div class="flex flex-wrap items-center gap-x-4">
         <h1 class="text-3xl font-bold">
-          <template v-if="settingsStore.isJoker">R🤡arer</template>
+          <template v-if="settingsStore.isJoker">R🤡arer 2: Electric B🤡🤡gal🤡🤡</template>
           <template v-else>{{ t("roarer") }}</template>
         </h1>
         <Login />
@@ -60,7 +60,7 @@ const settingsStore = useSettingsStore();
               <DropdownMenuItem>
                 <a
                   class="flex whitespace-nowrap text-link underline"
-                  href="https://github.com/mybearworld/roarer"
+                  href="https://github.com/engineerrunner/roarer-2"
                   target="_blank"
                 >
                   {{ t("linkGithub") }}
