@@ -44,8 +44,7 @@ const postContent = ref(
 );
 const posting = ref(false);
 
-const post = async (e?: Event) => {
-  e?.preventDefault();
+const post = async () => {
   if (
     posting.value ||
     imageUploading.value ||
@@ -80,6 +79,11 @@ const post = async (e?: Event) => {
   }
   posting.value = false;
   attachments.value = [];
+};
+
+const postSubmit = (e: Event) => {
+  e.preventDefault();
+  post();
 };
 
 const trimmedPost = (post: string) => {
@@ -219,7 +223,7 @@ defineExpose({ reply });
 </script>
 
 <template>
-  <form @submit="post" class="flex gap-2" v-if="authStore.isLoggedIn">
+  <form @submit="postSubmit" class="flex gap-2" v-if="authStore.isLoggedIn">
     <button
       class="rounded-xl bg-accent px-2 py-1 text-accent-text"
       type="button"

@@ -9,7 +9,6 @@ import Token from "markdown-it/lib/token";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { url as baseURL } from "../lib/env";
-import { linkPills } from "../lib/linkPills";
 import { hostWhitelist } from "../lib/hostWhitelist";
 import { DISCORD_REGEX } from "../lib/discordEmoji";
 import { APIAttachment } from "../lib/schemas/post";
@@ -230,78 +229,6 @@ effect(() => {
       element.append(iframe);
       el.remove();
       return;
-    }
-
-    if (
-      el.href !== el.textContent &&
-      url.href.replace(url.protocol + "//", "") !== el.textContent
-    )
-      return;
-
-    const matchingLinks = linkPills.filter((link) =>
-      typeof link.base === "string"
-        ? link.base === url.hostname
-        : link.base.test(url.hostname),
-    );
-    for (const link of matchingLinks) {
-      const match = (
-        url.pathname +
-        (link.includeSearch ? url.search : "") +
-        (link.includeHash ? url.hash : "")
-      ).match(link.path);
-      if (!match) continue;
-      if (link.convertLink) {
-        const newLink = link.convertLink(match);
-        el.href = newLink;
-        url = new URL(newLink);
-      }
-      el.className =
-        "no-style filled:bg-background filled:text-text bordered:bg-accent bordered:text-accent-text rounded-lg px-2 gap-1 inline-flex items-center align-middle";
-      const icon = document.createElement("img");
-      icon.ariaLabel = link.name;
-      icon.src =
-        typeof link.icon === "string"
-          ? link.icon
-          : settingsStore.theme.roarer_colorScheme === "dark"
-            ? link.icon.dark
-            : link.icon.light;
-      icon.className = "inline-block h-[1em]";
-      icon.dataset.isImage = "";
-      el.innerHTML = "";
-      const text = document.createElement("span");
-      text.className = "flex gap-1 flex-wrap items-center";
-      el.append(icon, text);
-      const show = await link.text?.(match);
-      if (show) {
-        if (typeof show === "string") {
-          el.append(show);
-        } else {
-          show.forEach((part) => {
-            if (typeof part === "string") {
-              text.append(part);
-            } else if ("sm" in part) {
-              const span = document.createElement("span");
-              span.className = "opacity-60 font-bold text-xs text-nowrap";
-              span.textContent = part.sm;
-              text.append(span);
-            } else if ("code" in part) {
-              const code = document.createElement("code");
-              code.textContent = part.code;
-              text.append(code);
-            } else {
-              part satisfies never;
-            }
-          });
-        }
-      } else {
-        const show = match[1];
-        if (!show) {
-          console.warn(link, "didn't output anything to show");
-          continue;
-        }
-        el.append(show);
-      }
-      break;
     }
   });
   element.querySelectorAll("code").forEach((element) => {
