@@ -319,5 +319,7 @@ export const en = {
   },
   uploadFile: "Upload file",
   attachmentsCount: "{amount} attachments",
-  uploadingAttachments: "Uploading attachments..."
+  uploadingAttachments: "Uploading attachments...",
+  gcBridgePost:
+    "This post was posted in a group chat connected to this one via the {'@'}gc bot.",
 };

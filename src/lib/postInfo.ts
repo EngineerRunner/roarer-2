@@ -23,7 +23,7 @@ export const getPostInfo = (
     content: reply?.postContent ?? content,
     bridged: !!bridgeMatch,
     reply,
-    isMeowerUser: !bridgeMatch || post.u === "Discord",
+    isMeowerUser: !bridgeMatch || post.u === "Discord" || post.u === "gc",
   };
 };
 

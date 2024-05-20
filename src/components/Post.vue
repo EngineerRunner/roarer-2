@@ -2,6 +2,7 @@
 import { effect, ref } from "vue";
 import {
   Check,
+  MessageSquareMore,
   MessageSquareReply,
   Flag,
   Link,
@@ -306,6 +307,13 @@ defineExpose({ highlight });
         >
           <MessageSquareReply class="inline-block w-5" aria-hidden />
           <span class="sr-only">{{ t("discordBridgePost") }}</span>
+        </span>
+        <span
+          :title="t('gcBridgePost')"
+          v-if="postInfo.bridged && post.u === 'gc'"
+        >
+          <MessageSquareMore class="inline-block w-5" aria-hidden />
+          <span class="sr-only">{{ t("gcBridgePost") }}</span>
         </span>
         <span
           :title="t('webhookBridgePost')"
