@@ -15,6 +15,7 @@ import PickEmoji from "./PickEmoji.vue";
 import TypingIndicator from "./TypingIndicator.vue";
 import { APIChat } from "../lib/schemas/chat";
 import { apiRequest, getResponseFromAPIRequest } from "../lib/api/request";
+import { getRestrictions } from "../lib/bitwise";
 import { DiscordSticker } from "../lib/discordEmoji";
 import { getReply } from "../lib/getReply";
 import { postSchema, APIPost } from "../lib/schemas/post";
@@ -223,7 +224,22 @@ defineExpose({ reply });
 </script>
 
 <template>
-  <form @submit="postSubmit" class="flex gap-2" v-if="authStore.isLoggedIn">
+  <div
+    class="text-center italic"
+    v-if="
+      authStore.ban &&
+      getRestrictions(authStore.ban.restrictions).has(
+        chat ? 'chatPosts' : 'homePosts',
+      )
+    "
+  >
+    {{ t("creatingPostsRestriction") }}
+  </div>
+  <form
+    @submit="postSubmit"
+    class="flex gap-2"
+    v-else-if="authStore.isLoggedIn"
+  >
     <button
       class="rounded-xl bg-accent px-2 py-1 text-accent-text"
       type="button"

@@ -188,8 +188,10 @@ const loadMore = async () => {
       {{
         chat === "livechat"
           ? t("livechat")
-          : chat.nickname ||
-            chat.members.find((member) => member !== authStore.username)
+          : chat.nickname ??
+            (chat.owner
+              ? t("namelessChat")
+              : chat.members.find((user) => user !== authStore.username))
       }}
     </h2>
     <RouterLink to="/chats" class="text-link underline">

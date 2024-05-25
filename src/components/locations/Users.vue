@@ -8,7 +8,7 @@ import ProfilePicture from "../ProfilePicture.vue";
 import Statistics from "../Statistics.vue";
 import { apiRequest, getResponseFromAPIRequest } from "../../lib/api/request";
 import { formatDate } from "../../lib/formatDate";
-import { getPermissions } from "../../lib/permissions";
+import { getPermissions } from "../../lib/bitwise";
 import { profileSchemaOrError, APIProfile } from "../../lib/schemas/profile";
 import { useCloudlinkStore } from "../../stores/cloudlink";
 import { useDialogStore } from "../../stores/dialog";

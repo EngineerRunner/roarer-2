@@ -20,7 +20,7 @@ const { chat } = defineProps<{
       :to="
         chat === 'livechat'
           ? '/chats/livechat'
-          : chat.nickname
+          : chat.owner
             ? `/chats/${chat._id}`
             : `/users/${chat.members.find(
                 (user) => user !== authStore.username,
@@ -32,14 +32,16 @@ const { chat } = defineProps<{
           chat === "livechat"
             ? t("livechat")
             : chat.nickname ??
-              chat.members.find((user) => user !== authStore.username)
+              (chat.owner
+                ? t("namelessChat")
+                : chat.members.find((user) => user !== authStore.username))
         }}
       </p>
       <p class="flex items-center gap-1">
         <template v-if="chat === 'livechat'">
           {{ t("liveChatDescription") }}
         </template>
-        <template v-else-if="chat.nickname">
+        <template v-else-if="chat.owner">
           <User class="inline-block h-4 w-4 min-w-4" aria-hidden />
           <span class="sr-only">Members:</span>
           <span class="line-clamp-1"> {{ chat.members.join(", ") }}</span>
@@ -53,7 +55,7 @@ const { chat } = defineProps<{
     <RouterLink
       class="flex items-center rounded-xl bg-accent px-2 py-1 text-accent-text"
       :to="`/chats/${chat._id}/settings`"
-      v-if="chat !== 'livechat' && chat.nickname"
+      v-if="chat !== 'livechat' && chat.owner"
     >
       <Settings aria-hidden />
       <span class="sr-only">

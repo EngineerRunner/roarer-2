@@ -9,6 +9,7 @@ import LanguageSwitcher from "../LanguageSwitcher.vue";
 import ProfilePicture from "../ProfilePicture.vue";
 import { profilePictures } from "../../assets/pfp";
 import { apiRequest, getResponseFromAPIRequest } from "../../lib/api/request";
+import { getRestrictions } from "../../lib/bitwise";
 import { profileSchema } from "../../lib/schemas/profile";
 import { upload } from "../../lib/upload";
 import { useCloudlinkStore } from "../../stores/cloudlink";
@@ -247,7 +248,16 @@ addEventListener("keydown", (e) => {
           {{ t("reportHistory") }}
         </RouterLink>
       </div>
-      <form class="contents" @submit="me">
+      <div
+        class="text-center italic"
+        v-if="
+          authStore.ban &&
+          getRestrictions(authStore.ban.restrictions).has('editingProfile')
+        "
+      >
+        {{ t("editingProfileRestriction") }}
+      </div>
+      <form class="contents" @submit="me" v-else>
         <label class="flex gap-2">
           {{ t("usersMeQuote") }}
           <DynamicTextArea class="border-accent" v-model="quote" />

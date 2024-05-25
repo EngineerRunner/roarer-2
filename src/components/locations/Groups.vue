@@ -5,12 +5,15 @@ import { RouterLink } from "vue-router";
 import { useI18n } from "vue-i18n";
 import ChatView from "../ChatView.vue";
 import { apiRequest, getResponseFromAPIRequest } from "../../lib/api/request";
+import { getRestrictions } from "../../lib/bitwise";
 import { chatSchema, APIChat } from "../../lib/schemas/chat";
 import { updateChatSchema } from "../../lib/schemas/updateChat";
+import { useAuthStore } from "../../stores/auth";
 import { useCloudlinkStore } from "../../stores/cloudlink";
 import { useDialogStore } from "../../stores/dialog";
 import { useOnlinelistStore } from "../../stores/onlinelist";
 
+const authStore = useAuthStore();
 const cloudlinkStore = useCloudlinkStore();
 const dialogStore = useDialogStore();
 const onlineListStore = useOnlinelistStore();
@@ -114,7 +117,16 @@ cloudlinkStore.lookFor(
 
 <template>
   <div class="block space-y-2">
-    <form class="flex gap-2" @submit="createChat">
+    <div
+  class="text-center italic"
+    v-if="
+      authStore.ban &&
+      getRestrictions(authStore.ban.restrictions).has('newChats')
+    "
+  >
+    {{ t("newChatsRestriction") }}
+  </div>
+    <form class="flex gap-2" @submit="createChat" v-else>
       <input
         type="text"
         :placeholder="t('chatNickname')"

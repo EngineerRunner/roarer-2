@@ -110,6 +110,32 @@ export const useCloudlinkStore = defineStore("cloudlink", () => {
   };
 
   const login = async (username: string, password: string) => {
+    lookFor(
+      z.object({
+        cmd: z.literal("direct"),
+        val: z.object({
+          mode: z.literal("banned"),
+          payload: z.object({
+            reason: z.string(),
+            expires: z.number(),
+          }),
+        }),
+      }),
+      (packet) => {
+        const date = new Date(packet.val.payload.expires * 1000);
+        if (new Date().getTime() < date.getTime()) {
+          dialogStore.alert(
+            packet.val.payload.expires
+              ? t("tempBan", {
+                  date: date.toString(),
+                  reason: packet.val.payload.reason,
+                })
+              : t("permBan", { reason: packet.val.payload.reason }),
+            false,
+          );
+        }
+      },
+    );
     const response = await send(
       {
         cmd: "authpswd",
@@ -124,6 +150,13 @@ export const useCloudlinkStore = defineStore("cloudlink", () => {
     );
     authStore.username = response.payload.username;
     authStore.token = response.payload.token;
+    if (
+      new Date().getTime() <
+        new Date(response.payload.account.ban.expires * 1000).getTime() &&
+      response.payload.account.ban.state !== "none"
+    ) {
+      authStore.ban = response.payload.account.ban;
+    }
     authStore.isLoggedIn = true;
     return response;
   };

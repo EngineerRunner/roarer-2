@@ -322,4 +322,13 @@ export const en = {
   uploadingAttachments: "Uploading attachments...",
   gcBridgePost:
     "This post was posted in a group chat connected to this one via the {'@'}gc bot.",
+  editingProfileRestriction: "You are restricted from editing your profile.",
+  editingChatsRestriction: "You are restricted from editing chats.",
+  newChatsRestriction: "You are restricted from creating chats.",
+  creatingPostsRestriction: "You are restricted from posting here.",
+  tempBan:
+    "You are temporarily banned from Meower until {date} for the following reason: {reason}",
+  permBan:
+    "You are permanently banned from Meower for the following reason: {reason}",
+  namelessChat: "Nameless chat",
 };

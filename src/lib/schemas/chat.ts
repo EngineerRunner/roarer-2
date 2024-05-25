@@ -13,7 +13,7 @@ export const chatSchema = z
   .and(
     z
       .object({
-        nickname: z.string(),
+        nickname: z.string().nullable(),
         owner: z.string(),
       })
       .or(
