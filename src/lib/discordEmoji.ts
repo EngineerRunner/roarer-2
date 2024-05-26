@@ -57,6 +57,8 @@ export const discordEmoji = [
   "<:fubgingcloudlink:1224195287178936392>",
   "<:consume:1224195139082125322>",
   "<:meowyhadsomepepsi:1224195086951383113>",
+  "<:yuhhuh:1227268820213698611>",
+  "<:nuhhuh:1233290735999258664>",
 ].map((emoji) => {
   const match = emoji.match(DISCORD_REGEX);
   if (!match) {
