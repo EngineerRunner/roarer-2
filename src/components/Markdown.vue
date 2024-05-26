@@ -205,7 +205,9 @@ effect(() => {
     [...element.firstChild.childNodes].every(
       (node) =>
         (node.nodeType === 3 /* text node */ &&
-          /^(?:(?!\d)\p{Emoji})+$/u.test(node.textContent!)) ||
+          /^(?:(?!\d)(?:\p{Emoji}|\u200d|\ufe0f))+$/u.test(
+            node.textContent!,
+          )) ||
         ((node as HTMLElement).tagName === "IMG" &&
           (node as HTMLElement).dataset.isEmoji === "true"),
     )
