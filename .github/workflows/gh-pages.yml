@@ -29,7 +29,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - run: pnpm install
-      - run: VITE_API="https://api.meower.org" VITE_CLOUDLINK="wss://api.meower.org/v0/cloudlink" VITE_ADMIN="mybearworld" VITE_URL="https://mybearworld.github.io/roarer" pnpm run build
+      - run: VITE_API="https://api.meower.org" VITE_CLOUDLINK="wss://api.meower.org/v0/cloudlink" VITE_ADMIN="EngineerRuner" VITE_URL="https://engineerrunner.github.io/roarer-2" pnpm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
