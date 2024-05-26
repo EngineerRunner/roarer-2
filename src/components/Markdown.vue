@@ -19,6 +19,8 @@ import { effect } from "vue";
 // @ts-expect-error
 import scratchblocks from "scratchblocks";
 
+// Database
+
 const { md, inline, noImages, attachments } = defineProps<{
   md: string;
   inline?: boolean;
@@ -105,6 +107,7 @@ tokens.forEach((token) => {
       beforeTextToken.content = beforeText;
       newTextTokens.push(beforeTextToken);
       const [fullMatch, alt, src] = specificMatch;
+      const isEmoji = fullMatch.startsWith("<");
       if (!alt || !src) {
         console.error("alt or src are undefined", { alt, src });
         throw new Error("alt or src are undefined");
@@ -116,12 +119,14 @@ tokens.forEach((token) => {
         ["alt", ""],
         [
           "src",
-          fullMatch.startsWith("<")
+          isEmoji
             ? `https://cdn.discordapp.com/emojis/${src}.${
                 fullMatch.startsWith("<a") ? "gif" : "webp"
               }?size=24&quality=lossless`
             : src,
         ],
+        ["data-is-emoji", isEmoji.toString()],
+        ["style", isEmoji ? "vertical-align: text-bottom" : ""],
         ["data-original", fullMatch],
       ];
       const altTextToken = new Token("text", "", 0);
@@ -193,6 +198,23 @@ effect(() => {
       element.classList.add("rounded-xl");
     }
   });
+  if (
+    element.childElementCount === 1 &&
+    element.firstChild &&
+    (element.firstChild as HTMLElement)?.tagName === "P" &&
+    [...element.firstChild.childNodes].every(
+      (node) =>
+        (node.nodeType === 3 /* text node */ &&
+          /^(?:(?!\d)\p{Emoji})+$/u.test(node.textContent!)) ||
+        ((node as HTMLElement).tagName === "IMG" &&
+          (node as HTMLElement).dataset.isEmoji === "true"),
+    )
+  ) {
+    element.classList.add("text-3xl");
+    element.querySelectorAll("img").forEach((img) => {
+      img.src = img.src.replace("?size=24", "?size=32");
+    });
+  }
   element.querySelectorAll("a").forEach(async (el) => {
     let url: URL;
     try {
