@@ -19,8 +19,6 @@ import { effect } from "vue";
 // @ts-expect-error
 import scratchblocks from "scratchblocks";
 
-// Database
-
 const { md, inline, noImages, attachments } = defineProps<{
   md: string;
   inline?: boolean;

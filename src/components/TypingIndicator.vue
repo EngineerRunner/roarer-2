@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { Keyboard } from "lucide-vue-next";
-// import { IconKeyboard, IconKeyboardOff } from "@tabler/icons-vue";
 import { useI18n } from "vue-i18n";
 import { z } from "zod";
 import { APIChat } from "../lib/schemas/chat";

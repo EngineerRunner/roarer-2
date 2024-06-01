@@ -165,7 +165,7 @@ const input = async () => {
     );
     if (status.status !== 200) {
       // intentionally not localized, this is a console error
-      console.error(`Failed to send typing indicator (${status})`);
+      console.error(`Failed to send typing indicator (${status.status})`);
     }
   }
 };

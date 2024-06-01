@@ -203,7 +203,6 @@ const deleteAccount = async () => {
         val: password,
       },
       z.literal("I:024 | Logged out"),
-      // true,
     );
   } catch (e) {
     await dialogStore.alert(t("deleteAccountFail", { errmsg: e }));
